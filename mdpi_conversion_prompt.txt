@@ -1,0 +1,7 @@
+OK, I am trying to convert a word doc to latex and then put it in he mdpi format. See the *.tex file in the gwbase_manuscript_07          
+  subfolder. make a copy of this file and convert it to the MDPI format in the MDPI_Article_Template folder. Preserve teh contents of       
+  the gwbase file, but make the layout and styles, formatting etc match the MDPI template.   
+
+
+NOTE: After conversion, you need to put the new mdpi-formatted *.tex file, the media subfolder, and the Definitions subfolder into a
+ single zip archive for uploading to prism.
