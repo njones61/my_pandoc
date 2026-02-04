@@ -1,0 +1,1180 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ Groundwater Storage Analysis for the Great Salt Lake Basin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\phantomsection\label{_Hlk206410546}{} Groundwater Storage
+Analysis for the Great Salt Lake Basin}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+Henok Teklu\textsuperscript{1}, Norman L. Jones\textsuperscript{1}*,
+Gustavious P. Williams\textsuperscript{1}, Rob Sowby\textsuperscript{1},
+Jake Serago\textsuperscript{2}
+
+\textsuperscript{1} Brigham Young University, Department of Civil and
+Construction Engineering, Provo, UT, USA
+
+\textsuperscript{2} Utah Division of Water Resources, Salt Lake City,
+UT, USA
+
+\textbf{*Correspondence author email:}
+
+\textbf{Acknowledgments}
+
+NOT SURE WHAT WE SHOULD PUT HERE. THIS WAS NOT PART OF ANY SPECIFIC
+CONTRACT. HENOK WORKED ON IT PARTLY DURING THE TIME HE WAS ON COLLEGE
+MONEY DURING THE STOP WORK ORDER. I SUPPOSE WE COULD MENTION THAT.
+
+Groundwater Storage Analysis for the Great Salt Lake Basin
+
+Henok Teklu\textsuperscript{1}, Norman L. Jones\textsuperscript{1}*,
+Gustavious P. Williams\textsuperscript{1}, Rob Sowby\textsuperscript{1},
+Jake Serago\textsuperscript{2}
+
+\textsuperscript{1} Brigham Young University, Department of Civil and
+Construction Engineering, Provo, UT, USA
+
+\textsuperscript{2} Utah Division of Water Resources, Salt Lake City,
+UT, USA
+
+\textbf{*Correspondence author email:}
+\href{mailto:njones@byu.edu}{\nolinkurl{njones@byu.edu}}
+
+Acknowledgments
+
+SEE NOTE ON TITLE PAGE
+
+Abstract
+
+Keywords: Groundwater, Sustainability, Remote Sensing, GRACE, GLDAS
+
+Practitioner Points
+
+\section{Introduction}\label{introduction}
+
+NEED A DISCUSSION OF THE GSLB, INCLUDING DECLINING WATER LEVELS,
+IMPORTANCE OF GROUNDWATER.
+
+REVIEW OF PRIOR GROUNDWATER STUDIES ON THE GSLB
+
+REMOTE SENSING FOR GW STORAGE ANALYSIS. GRACE, GLDAS, GWDM METHODOLOGY
+(CITE OUR RECENT CENTRAL VALLEY STUDY)
+
+Groundwater is a vital resource crucial in sustaining life. Groundwater
+has been the most significant source of freshwater for human use
+(Stephan et al. 2019). A recent UN study shows that groundwater supplies
+about 25 \% of all the freshwater abstracted on Earth (UNESCO World
+Water Assessment Programme 2022).
+
+This once-abundant, valuable resource for drinking, irrigation and
+industrial processes has declined in the last century due to population
+growth, industrial expansion, and climate change. Globally, around 71\%
+of aquifers show a decline (Jasechko et al. 2024). A study by the USGS
+indicates that many areas of the United States are also experiencing
+this phenomenon. During 2000-2008, an average of 25km3/year depletion of
+groundwater was observed in the United States, and its primary reasons
+are excessive pumping for irrigation, municipalities and industrial use,
+which results in drying of wells (Leonard F. Konikow 2013).
+
+A similar trend is believed to be happening in the Great Salt Lake
+basin. A previous GRACE-based study reported a decline of approximately
+0.23 cm/year in total water storage(Hall et al. 2024). Agriculture has
+been identified the primary source of depletion. As climate change
+shifts the predictability of the wet and dry seasons, this will
+exacerbate the already dire situation further (Great Salt Lake Strike
+Team 2024).
+
+Groundwater storage changes can be identified using satellite data,
+models, and recorded well data. The NASA Gravity Recovery and Climate
+Experiment (GRACE) is a notable satellite mission that is useful for
+analyzing changes in groundwater storage. The GRACE mission, which was
+operational from March 2002 to June 2017, and its successor GRACE
+Follow-On (GRACE-FO), launched in 2018, represent significant
+advancements in monitoring total water storage (TWS) variations from
+space (Tapley et al. 2004). The mission operates twin satellites that
+follow the same orbital path, 220 km apart from each other, to measure
+changes in Earth\textquotesingle s gravitational field precisely (Tapley
+et al. 2004). The primary reason for a change in gravitational field is
+due to changes in mass at or near the Earth\textquotesingle s surface
+over timescales of months to years, with water storage being the
+dominant factor.
+
+One notable application of GRACE is the estimation of groundwater
+storage across different regions of the Earth. This capability is
+crucial for managing freshwater resources, especially in areas where
+traditional monitoring methods are lacking or insufficient. The GRACE
+mission provides data on total water storage anomalies (TWSa), which
+quantify the change in total water storage relative to a long-term mean
+across various reservoirs, including groundwater, surface water, soil
+moisture, snow, and canopy water (Frappart and Ramillien 2018). The
+GRACE data calculates storage anomalies using an average value from 2004
+to 2009 as a reference. Storage anomaly is the difference between a
+measured or estimated storage value at a given time and the long-term
+average storage over a defined baseline period.
+
+While GRACE directly measures the combined signal of all water storage
+components within a given area, it cannot differentiate between these
+individual components inherently. Consequently, extracting information
+specifically about groundwater storage (GWS) from the GRACE TWSa
+requires the integration of additional data sources. A prevalent
+approach involves subtracting estimates of other terrestrial water
+components (TWS), such as surface water, soil moisture, snow water
+equivalent, and plant canopy water, typically derived from global land
+surface models (LSMs) like the Global Land Data Assimilation System
+(GLDAS), from the GRACE-derived TWSa. When subtracting terrestrial water
+components from GRACE, traditionally, we often tend to exclude surface
+water storage from terrestrial water components, largely because it is
+considered insignificant compared to other terrestrial water components.
+While this assumption may hold true for most basins, it is crucial to
+consider changes in surface water storage as part of the terrestrial
+water budget when lakes and reservoirs significantly contribute to the
+overall water system in a basin.
+
+Despite its capability, the GRACE data have inherent limitations. The
+typical spatial resolution ranges from 300 to 400 km, meaning that mass
+changes occurring over smaller regions may not be accurately resolved
+(Chen et al. 2022). Another limitation of GRACE is its temporal
+resolution. The temporal resolution of GRACE and GRACE-FO is primarily
+monthly, as the satellites complete a global coverage approximately
+every 30 days. This monthly resolution may not capture rapid mass change
+events, such as sudden floods or short-term groundwater extraction,
+limiting the utility of GRACE data for monitoring fast-evolving
+phenomena. Besides its limitation in its temporal resolution, there is
+an 11-month gap between June 2017 and May 2018 due to a hardware failure
+in the GRACE mission and a delay of the GRACE-FO launch (Alan Buis,
+NASA's Jet Propulsion Laboratory 2017; Zhang et al. 2022).
+
+Groundwater storage changes can also be estimated using a \_\_\_ method
+described by \_\_\_.
+
+Spatial leakage is another limitation of GRACE data. Spatial leakage
+occurs due to the downscaling of GRACE data from its original, coarser
+scale (Frappart and Ramillien 2018). This can cause water storage
+signals to leak from one basin into a neighboring basin, which is
+especially problematic for narrow basins.
+
+Another important dataset for groundwater storage change analysis is the
+Global Land Data Assimilation System Catchment Land Surface Model (GL
+DAS2.2 CLSM).~ Unlike the GRACE, this dataset provides groundwater
+storage as a variable with higher resolution. ~
+
+The GLDAS 2.2 product has been extensively utilized in regional and
+global hydrogeological investigations spanning multiple continents. In
+Asia, the product's daily terrestrial water storage (TWS) data were
+jointly employed to investigate the severe 2020 Yangtze flooding event
+in China (David Tarboton 2023) and it was applied to assess long-term
+groundwater variation in India (Nenweli et al. 2024). In the Volta
+basin, it was applied to compare the groundwater storage anomaly from
+GRACE (Barbosa et al. 2025).
+
+We can also assess changes in groundwater storage using the Groundwater
+Data Mapper (GWDM), an open-source tool that converts spatially sparse
+in-situ groundwater observations into basin-scale storage estimates.
+Although in-situ data are limited in spatial coverage and often affected
+by temporal gaps and measurement inconsistencies, GWDM addresses these
+limitations through temporal data imputation and spatial interpolation
+to generate continuous groundwater level surfaces. These surfaces are
+then integrated with aquifer storage properties to estimate groundwater
+storage anomalies while preserving localized groundwater dynamics
+captured by in-situ observations (Shepard et al. 2025a; Evans et al.
+2020).
+
+Given the scale and complexity of the GSLB, it is critical to explore
+all available datasets; therefore, in this study, we assessed each
+dataset to capture groundwater behavior as comprehensively as possible.
+
+Our study aims to evaluate groundwater storage dynamics in the Great
+Salt Lake Basin (GSLB) by integrating satellite-based, model-based, and
+in-situ observations. Special emphasis is placed on assessing how the
+inclusion of surface water storage, particularly from the Great Salt
+Lake itself, influences groundwater storage anomaly estimates derived
+from GRACE data. The specific objectives of the study are to:
+
+\begin{itemize}
+\item
+  Estimate groundwater storage change in the GSLB using GRACE data via a
+  traditional approach that combines the GRACE total water storage data
+  set and GLDAS terrestrial water components.
+\item
+  Estimate groundwater storage change in the GSLB using a modified
+  approach that blends GRACE and GLDAS remotely sensed data with direct
+  measurements of storage changes in the Great Salt Lake and other lakes
+  and reservoirs in the basin.
+\item
+  Estimate groundwater storage change in the GSLB using the new GLDAS
+  v2.2 dataset that includes a GRACE-assimilated groundwater storage
+  anomaly estimate at a higher resolution.
+\item
+  Estimate groundwater storage change in the GSLB using a
+  spatio-temporal imputation and interpolation algorithm that leverages
+  in situ data groundwater levels measurements at almost 1200 wells in
+  the basin.
+\item
+  Compare and contrast each of the four storage change estimates.
+\end{itemize}
+
+\section{\texorpdfstring{Study Area and Background~
+}{Study Area and Background~ }}\label{study-area-and-background}
+
+The Great Salt Lake Basin is composed of five sub-basins: Bear River,
+Weber River, Jordan River, Utah Lake, and West Desert. The total area of
+the basin is 93,000 km² (Abbott et al. 2023)
+
+The Great Salt Lake Basin area is a rapidly growing region, with
+significant population increases exemplified by Salt Lake County in the
+Jordan River Watershed, which had 898,000 residents in 2000 and is
+projected to reach approximately 2 million by 2060, and the Utah Lake
+Basin, with just under 548,000 residents in 2010 projected to grow to
+about 1.5 million by 2060 (Utah Division of Water Resources 2010; 2014)
+
+Groundwater in the Great Salt Lake Basin is primarily utilized for
+public supply and drinking water, agricultural irrigation, industrial
+purposes, and private domestic and stock watering across its various
+sub-basins (Utah Division of Water Resources 2010; 2014; Lincoln R.
+Smith 2019; Utah Division of Water Resources, n.d.)
+
+The study area, shown in Figure 1, illustrates the geographic extent of
+the Great Salt Lake Basin and highlights its major surface-water
+features, including the Great Salt Lake, Utah Lake, Bear Lake, and the
+Jordan, Weber, and Bear River systems. The map provides spatial context
+for the groundwater analyses by showing the primary lakes, rivers, and
+population centers that influence groundwater--surface water
+interactions across the basin.
+
+\includegraphics[width=6.80208in,height=4.8125in]{GSLB_GW_Storage_v03/media/image1.png}
+
+Figure 1: Study area showing the Great Salt Lake Basin and major
+surface-water features, including the Great Salt Lake, Utah Lake, and
+Bear Lake
+
+Groundwater resources in Utah occur primarily within two broad
+hydrogeologic settings: unconsolidated basin-fill deposits and
+consolidated bedrock formations (Lincoln R. Smith 2019) .These aquifer
+systems underlie much of the Great Salt Lake Basin (GSLB) and adjacent
+valleys and reflect a complex geologic history shaped by alluvial
+deposition, lacustrine processes, and structural controls.
+
+Across the Wasatch Front, Weber Delta, Utah Lake Basin, and Bear River
+Basin, valley floors are predominantly underlain by thick sequences of
+unconsolidated sediments derived from surrounding mountain ranges. These
+deposits include coarse-grained alluvial-fan, deltaic, and shoreline
+materials composed mainly of sand and gravel, which form the most
+productive aquifers due to their high transmissivity (Lincoln R. Smith
+2019; Utah Division of Water Resources 2014). These coarse units
+commonly interfinger with finer-grained clay and silt layers, resulting
+in vertically heterogeneous aquifer systems with a mix of confined,
+unconfined, and locally perched groundwater conditions (Clyde et al.,
+n.d.)
+
+A large portion of the unconsolidated stratigraphy is associated with
+ancient Lake Bonneville, which once covered much of western Utah.
+Lacustrine and shoreline deposits from Lake Bonneville consist of clay,
+silt, sand, gravel, and locally boulders. Coarser shoreline and terrace
+deposits are particularly effective at storing and transmitting
+groundwater, while finer lacustrine sediments often act as confining
+layers (Lincoln R. Smith 2019)
+
+In addition to basin-fill aquifers, groundwater in parts of the study
+area is stored in fractured bedrock units, including limestone and
+sandstone formations such as those found in the Bear River Basin. While
+these bedrock aquifers can be locally productive where fracture networks
+are well developed, their hydraulic properties are generally more
+spatially variable than those of unconsolidated basin-fill aquifers
+(Abbott et al. 2023). Together, basin-fill and bedrock aquifers form an
+interconnected groundwater system that controls regional groundwater
+storage and flow within the Great Salt Lake Basin.
+
+\section{Data}\label{data}
+
+\subsection{GRACE Data}\label{grace-data}
+
+NASA distributes processed Total water storage (TWS) data derived from
+the Gravity Recovery and Climate Experiment (GRACE) satellite mission.
+Three institutions independently process this data using distinct
+algorithms: NASA's Jet Propulsion Laboratory (JPL), the University of
+Texas at Austin's Center for Space Research (CSR), and the German
+Research Center for Geosciences (GFZ). For this analysis, we used data
+specifically provided by NASA\textquotesingle s Jet Propulsion
+Laboratory (JPL). This dataset offers monthly TWSa measurements at a
+spatial resolution of 0.5 degrees from 2002 to 2025, along with
+associated uncertainty values for each grid cell (Purdy et al. 2019) .
+Since the GRACE water storage estimates represent a change and not an
+absolute value, they are distributed in anomaly format representing the
+deviation from the mean TWS values over the period 2004 to 2009. This
+anomaly dataset is designated as TWSa in the following sections.
+
+\subsection{GLDAS-v2 Data}\label{gldas-v2-data}
+
+NASA's GLDAS Version 2 consists of three different components: GLDAS
+2.0, GLDAS 2.1, and GLDAS 2.2. GLDAS 2.0 runs from 1948 to 2014; GLDAS
+2.1 runs from 2000 to present, and the latest version, 2.2, runs from
+2003 to present. In our analysis, we utilized versions 2.1 and 2.2
+
+The Global Land Data Assimilation System Version 2.1 has been a
+significant dataset for a water balance analysis (Cho 2024). This system
+consists of three separate land surface models: NOAH, Variable
+Infiltration Capacity (VIC), and Catchment Land Surface Model (CLSM)
+(Cho 2024). While all aim to represent the terrestrial water storage
+(TWS), they differ in their spatial resolutions and how they
+conceptualize, simulate, and utilize components like Soil Moisture (SM),
+Snow Water Equivalent (SWE), and Canopy Water Storage (CAN), which are
+vital components for deriving groundwater storage anomalies (GWSa). The
+VIC and CLSM datasets have a grid resolution of 1.0 degrees, while the
+NOAH datasets have a resolution of 0.25 degrees (Barbosa et al. 2022).
+We downloaded our GLDAS 2.1 datasets from NASA Global Precipitation
+Measurement. We then converted them to anomaly format by subtracting the
+mean values over the period 2004 to 2009 to match the same frame of
+reference used for the GRACE total water storage anomaly. The resulting
+anomaly datasets are referenced as Sma, SWEa, and CANa below.
+
+GLDAS 2.2 refers to the Global Land Data Assimilation System Version
+2.2, an advanced hydrological product developed by NASA as part of the
+broader GLDAS initiative, a joint project with NOAA (Nenweli et al.
+2024; Guardiola-Albert et al. 2024). The main difference between this
+version and previous versions is that it assimilates total water storage
+from GRACE and GRACE-FO data, allowing the model to account for the
+effect of pumping, as GRACE data includes it (Barbosa et al. 2025). The
+current version of GLDAS 2.2 uses a Catchment Land Surface Model (CLSM)
+model (Yan et al. 2022), there is no official document when to
+incorporate the VIC and NOAA with GLDAS 2.2. The metrological analysis
+fields that drive the CLSM in GLDAS V2.2 were derived from the European
+Centre for Medium-Range Weather Forecasts (ECMWF) (Yan et al. 2022).
+
+Compared to GRACE data, this data offers finer temporal and spatial
+scales. This data provides daily information from February 2003 onwards
+with a spatial resolution of 0.25 degrees (Yan et al. 2022; Berhanu et
+al. 2024; Guardiola-Albert et al. 2024). We used GLDAS-2.2: Global Land
+Data Assimilation System dataset from Google Earth Engine (GEE) for our
+analysis.
+
+\subsection{Lake and Reservoir Storage
+Data}\label{lake-and-reservoir-storage-data}
+
+We used a fully compiled dataset provided by David Tarboton (2023) to
+obtain volumetric storage changes for water bodies in the Great Salt
+Lake basin and filtered it to year 2002 and above ,covering 19 lakes and
+reservoirs as well as the Great Salt Lake. For the Great Salt Lake, the
+author uses historical water-level data and detailed bathymetry to
+calculate the lake\textquotesingle s volume variation. For the remaining
+lakes and reservoirs, the author uses a dataset from the U.S. Bureau of
+Reclamation (David Tarboton 2023). We extended the dataset to include
+2024, since the author\textquotesingle s dataset covers only till 2023.
+The final surface water storage is calculated by summing the volume
+change from lake, reservoir and salt lake.
+
+Anomalies were computed relative to the long-term mean storage
+(2004--2009), which served as the baseline period. This approach allows
+for the assessment of interannual variability and trends in surface
+water storage, highlighting deviations from typical conditions within
+the basin.
+
+\subsection{Precipitation}\label{precipitation}
+
+We obtained daily precipitation data in millimeters (mm) from the
+Climate Hazards Group InfraRed Precipitation with Stations (CHIRPS)
+dataset, accessed through ClimateSERV. ClimateSERV is an interactive web
+based tool developed under the umbrella of SEVIR (a joint NASA-USAID
+initiative). The site integrates different key datasets including CHRIPS
+(Kruskopf et al. 2025)
+
+The CHRIPS data is a 0.05° × 0.05° gridded dataset spanning from 1981 to
+the present (Funk et al. 2015). We used climateSERV website to acquire a
+CHRIPS data for our study area and period.
+
+Inside climateSERV, we uploaded the shapefile for the Great Salt Lake
+Basin (GSLB) and extracted UCSB CHIRPS observed precipitation data for
+the region. Further, we filtered the dataset to cover the period from
+January 2000 to December 2024. We aggregated daily average precipitation
+values to produce monthly totals, and annual precipitation was computed
+by summing the corresponding monthly totals.
+
+This workflow provides a consistent representation of cumulative
+rainfall over time, ensuring comparability across temporal scales and
+strengthening subsequent hydrological analysis.
+
+\subsection{In-Situ Groundwater Data}\label{in-situ-groundwater-data}
+
+Groundwater level data were downloaded from the U.S. Geological
+Survey\textquotesingle s National Water Information System (NWIS).
+
+NWIS is a central water information database managed by USGS. It
+collects roughly 1.5 million sites, including groundwater sites, across
+the 50 states. Each site has a coordinate along with well information,
+like well ground surface elevation, well depth, and water table
+elevation data (USGS 2019)
+
+We can access the data either through the Application Programming
+Interface (API ) or the USGS national water dashboard, which lets us
+acquire well time series data's based on the selected states.
+
+Since the Great Salt Lake Basin is located within four states: Utah,
+Nevada, Idaho, and Wyoming, we first downloaded all the wells located in
+each state.
+
+Following the acquisition, the dataset---spanning the period from
+1900-01-01 to 2024-12-31---was spatially clipped to the boundaries of
+the Great Salt Lake Basin (GSLB) to focus analysis on the hydrologically
+relevant region.
+
+Within the GSLB, there are approximately 8,600 wells and more than
+177,000 measurements. The earliest water level measurements date back to
+1906 and extend through the end of the study period (2024). Of the total
+wells, 4837 (56\%) have only one water-level measurement. Only 1710
+wells have more than 10 measurements.
+
+A Python-based preprocessing pipeline was then applied to standardize
+and clean the data, including adding state identifiers, converting dates
+to ISO 8601 format (YYYY-MM-DD), and removing records with missing water
+table elevation (WTE) values and outliers.
+
+We employed a straightforward method to remove outliers by examining
+records where the water table elevation (WTE) exceeded the ground
+surface elevation (GSE). To determine the optimal thresholds for outlier
+removal, we run multiple scenarios and compare the resulting groundwater
+storage anomaly (GWSa) trends generated using the GWDM script with those
+derived from the GLDAS 2.2 CLSM dataset. Ultimately, we established a
+threshold of 6.1 meters (20 feet) for elevation differences between WTE
+and GSE. besides that, we have also removed a recording with extremely
+low water table elevation level values below the ground surface
+elevations
+
+\section{Methods}\label{methods}
+
+\subsection{Storage Analysis with GRACE and
+GLDAS}\label{storage-analysis-with-grace-and-gldas}
+
+To isolate groundwater storage from GRACE total water storage anomaly
+(TWSa), we used the process outlined by Barbosa et al (2022) and the
+GGST website (ggst, n.d.). The groundwater storage anomaly (GWSa) is
+found by subtracting the terrestrial water storage components from the
+total water storage anomaly as follows:
+
+\[\begin{array}{r}
+GWSa = TWSa - (SWEa\  + \ CAN\ a\  + \ SMa)\ \#(1)
+\end{array}\]
+
+Where SWEa, CANa, and SMa are the snow water equivalent, canopy storage,
+and soil moisture storage anomalies, respectively, from the GLDAS 2.1
+dataset. As described above, GLDAS 2.1, consists of three models (Noah,
+VIC, and CLSM), so we average the SWEa, CANa, and SMa datasets from
+three models to get the storage anomaly datasets used in equation 1.
+Given the spatial resolution discrepancy between the GRACE TWSa dataset
+and the GLDAS 2.1 datasets, we standardized all datasets to a common
+spatial resolution of 1x1 degree before applying Equation 1. jjj
+
+\[\] The GWSa dataset calculated using Equation 1 has a series of gaps
+due to gaps in the original GRACE TWSa dataset. These gaps are due to
+periodic equipment malfunctions in the original GRACE mission and due to
+the 11 month gap from July 2017 to may 2018 between the termination of
+the original GRACE mission and the launch of the subsequent GRACE-FO
+mission (Zhang et al. 2022). To fill these gaps, we employed a
+statistical method known as the seasonal decomposition method from the
+statsmodels Python library, as the groundwater data exhibit seasonal
+variability as shown in equation 2. This library helps us distinguish
+between trends, seasonality, and residuals in the GWSa data.
+
+\[\begin{array}{r}
+Y\lbrack t\rbrack = T\lbrack t\rbrack + S\lbrack t\rbrack + e\lbrack t\rbrack\#()
+\end{array}\]
+
+Where Y{[}t{]} is GWSa, T{[}t{]} is GWSa trend, S{[}t{]} is GWSa
+seasonal component, and e{[}t{]} is a residual part of GWSa. The trend
+component (T{[}t{]}) represents the long-term progression of groundwater
+storage, obtained through smoothing techniques such as moving averages.
+The seasonal component (S{[}t{]}) captures the regular, cyclical
+patterns observed annually by averaging data for corresponding periods
+across multiple years. The residual component (e{[}t{]}) comprises
+irregular fluctuations that the seasonal and trend components cannot
+explain. To impute the missing data, we utilized the extracted trend
+component and combined it with the monthly average values of the
+seasonal and residual components corresponding to each missing month.
+This process is described in more detail in (Barbosa et al. 2022).
+
+Equation-1, excludes surface water storage as a viable terrestrial water
+component. For most basins, the addition of surface water storage from
+lakes, reservoirs and streams is insignificant due to slight variations
+in anomalies, yet for a basin as large as GSLB, with the Great Salt
+Lake, Utah Lake, and 18 additional reservoirs, accounting for storage
+anomalies may be important.
+
+In our analysis of the Great Salt Lake Basin (GSLB), we assessed the
+contribution of surface water storage changes from lakes and reservoirs
+to GRACE-based total water storage anomalies. Our findings show that
+approximately 31\% of the basin's total storage change is attributed to
+surface water, particularly from the Great Salt Lake. This highlights
+the importance of including surface water storage as a terrestrial
+component in regions where it plays a significant hydrological role.
+
+To test the impact of these water bodies on the groundwater storage
+derivation, we adjusted equation-1 by incorporating a surface water
+storage anomaly (SWSa) as follows:
+
+\[\begin{array}{r}
+GWSa = TWSa - \left( SWEa\  + \ CANa\  + \ SMa\mathbf{+}\mathbf{SWSa} \right)\#()
+\end{array}\]
+
+\subsection{Storage Analysis using GLDAS
+v2.2}\label{storage-analysis-using-gldas-v2.2}
+
+Unlike the GRACE data, the new GLDAD v2.2 dataset provides a
+ready-to-use estimate of groundwater storage time series data that
+doesn't require extensive data processing by users (Guardiola-Albert et
+al. 2024). For simplicity, we converted the daily data into monthly
+data. The entire process of acquiring GLDASV2.2 and calculating the
+groundwater storage anomaly is performed using Google Earth Engine
+within a Colab Environment. We processed the monthly data from 2003 to
+2024 as the starting year for the dataset is 2003. Groundwater storage
+anomalies (GWSa) were identified by subtracting the mean values
+calculated from a baseline period of 2004--2009.
+
+\subsection{Storage Analysis using In Situ Well
+Data}\label{storage-analysis-using-in-situ-well-data}
+
+To estimate groundwater storage change in the GSLB using in situ
+water-level measurements from wells, we used the algorithm associated
+with the Groundwater Data Mapper (GWDM) tool (Norm Jones, n.d.). GWDM is
+a web application and associated suite of Python tools for estimating
+groundwater storage change in aquifers. The web application serves as a
+platform that allows users to interact with their well data and view
+time-series data for a single well or a group of wells. Additionally, it
+will enable users to view an interpolated drawdown volume of aquifers.
+The Python tools associated with the GWDM are used to generate
+time-varying estimates of aquifer storage change.
+
+The GWDM algorithm is depicted graphically in figure-2.
+
+\includegraphics[width=5.82872in,height=6.26393in]{GSLB_GW_Storage_v03/media/image4.png}
+
+Figure 2. GWDM interpolation and GWS calculation procedures
+
+The well data collected from NWIS contain substantial temporal gaps,
+which must be filled before interpolation and groundwater storage
+estimation. Before imputation, a filtering mechanism was used to retain
+wells with a certain minimum number of observations. For wells that met
+the minimum observation requirements, a two-tier imputation technique is
+employed.
+
+First, Piecewise Cubic Hermite Polynomial Interpolation (PCHIP) was used
+to fill short-duration gaps between known measurements while preserving
+the natural shape and gradients of observed trends. Second, for longer
+discontinuities or cases requiring extrapolation beyond the observed
+period, a machine learning algorithm, the Extreme Learning Machine (EL)
+approach, was implemented. During this stage, the algorithm leveraged
+concurrent soil-moisture information as an auxiliary predictor.
+
+After interpolation, we filtered a December water table elevation for
+each well and applied spatial interpolation. For a spatial
+interpolation, the GWDM scripts use the Kriging algorithm. This method
+allows point measurements of water table elevations to be interpolated
+across the entire basin, generating a continuous potentiometric surface
+for each year of the selected period.
+
+This geostatistical approach estimates groundwater levels in areas
+between monitoring wells. To convert the interpolated potentiometric
+surface into a change in groundwater storage volume, we multiplied the
+drawdown (or rise) relative to the average of base years (2004-2009) by
+the storage coefficient and the grid area.
+
+To represent the spatially averaged change in groundwater level, we
+developed a single drawdown curve (in centimeters) by dividing the total
+change in groundwater storage volume of each year by the basin area,
+yielding an average liquid water equivalent change in water level,
+representing how much groundwater storage increased or decreased when
+normalized by a basin area. The above procedure is illustrated in detail
+in (Shepard et al. 2025; Barbosa et al. 2023; Ramirez et al. 2022)
+
+\section{Results}\label{results}
+
+\subsection{GRACE-based unadjusted
+GWSa}\label{grace-based-unadjusted-gwsa}
+
+We used the GRACE Groundwater Subsetting Tools (GGST) platform to obtain
+groundwater storage anomalies (GWSa) for the Great Salt Lake Basin
+(GSLB). The anomaly is calculated based on the average value from 2004
+to 2009. The GGST app gives us a change of groundwater storage anomaly
+in terms of liquid water equivalent measured in cm (Barbosa et al.
+2025). Missing data points in the time series were filled using the
+imputation technique described in the GRACE data processing section,
+which combines seasonal averaging and linear interpolation to preserve
+long-term trends while minimizing gaps.
+
+\includegraphics[width=6.80208in,height=3.57292in]{GSLB_GW_Storage_v03/media/image7.png}
+
+Figure 3. Unadjusted GRACE-based GWSa from 2002 to 2024 in Liquid water
+equivalent
+
+As shown in Figure 3, our GRACE-based unadjusted GWSa analysis shows a
+pronounced decline in groundwater levels during two critical periods:
+2012--2016 and 2019--2022. These drawdown phases are separated by a
+notable recovery of 4.3 cm from 2016 to 2019. Outside of these periods,
+groundwater storage exhibits relatively stable fluctuations, suggesting
+limited long-term accumulation. The overall trend indicates persistent
+stress on groundwater resources, punctuated by brief episodes of
+recharge.
+
+Additionally, we calculated the change in volumes by multiplying the
+GRACE-derived liquid water equivalent by the area of the basin.
+Groundwater volume estimates indicate a peak increase of approximately
++1.70 km³ in 2008, followed by substantial volumetric losses during
+recent years. The most severe declines occur during 2020 (−2.70 km³),
+2021 (−5.10 km³), and 2022 (−7.21 km³), as shown in Figure 4,
+corresponding to an average reduction of roughly 2.4 km³ per year over
+this period. Because the dataset is GRACE-driven, the volume estimation
+has uncertainties due to signal leakage, an inherent limitation of GRACE
+due to its coarse resolution, which leads to an underestimation of
+volume changes.
+
+\includegraphics[width=6.80208in,height=3.52083in]{GSLB_GW_Storage_v03/media/image8.png}
+
+Figure 4. Unadjusted GRACE-based Groundwater anomaly volume change
+
+GRACE/GLDAS with Surface Water Adjustment
+
+\subsection{GRACE-based adjusted GWSa}\label{grace-based-adjusted-gwsa}
+
+Next, we developed an Adjusted Groundwater Storage Anomaly (GWSa) using
+the GRACE and GLDAS data by explicitly incorporating the surface water
+storage anomaly as described above. The adjusted and unadjusted
+anomalies are presented in Figure-5. A comparison between the two
+datasets shows a moderately strong positive relationship, with a Pearson
+correlation coefficient (r = 0.6539) and a corresponding coefficient of
+determination (R² = 0.43), indicating that roughly 43 \% of the
+variability in the adjusted GWSa can be explained by the unadjusted
+values. The relationship is statistically significant (p = 0.0007),
+confirming that the observed correlation is unlikely to have occurred by
+chance.
+
+\includegraphics[width=6.78958in,height=3.34931in]{GSLB_GW_Storage_v03/media/image9.png}
+
+Figure 5. A relationship between GRACE based adjusted and unadjusted
+GWSa
+
+The adjusted Groundwater Storage Anomaly (GWSa) data from 2002 to 2024,
+measured in centimetres, reveal significant year-to-year variability.
+The period shows both surplus and deficit conditions, with the highest
+groundwater storage occurring in 2008 (an anomaly of +2.78 cm) and the
+lowest in 2005 (an anomaly of -3.56 cm). Notably, the most recent years
+from 2020 to 2023 display a consistent and sharp decline, indicating a
+period of moderate groundwater deficit. The storage anomaly fell to
+-2.97 cm by 2023, matching the low levels seen at the beginning of the
+record in 2002.
+
+\subsection{}\label{section}
+
+\subsection{Storage Analysis using In Situ
+Data}\label{storage-analysis-using-in-situ-data}
+
+Although our data includes more wells in the aquifer, only 1,700 have
+well records with samples above 10. To determine the minimum number of
+samples required for a reliable imputation and spatial interpolation, we
+run the GWDM workflow with cross-validation.
+
+A 5-fold cross-validation was selected. With the best model from
+cross-validation, we compared the predicted values with the actual data.
+For comparison, we used the coefficient of determination (R²), mean
+square error (MSE), and mean absolute error (MAE). We plotted wells with
+an R-squared (R2) value less than zero and examined the number of
+records for those wells, as shown in Figure -6. We observed that a
+majority of wells with fewer than 20 records tend to exhibit an
+R-squared value (R2) of less than 0. Using this approach, we drop wells
+with a record of less than 20. This approach resulted in a total of 1198
+wells for imputation and spatial interpolation.
+
+\includegraphics[width=6.04167in,height=3.56944in]{GSLB_GW_Storage_v03/media/image3.png}
+
+Figure 6. Distribution of well records for wells with R2 \textless{} 0
+after cross-validation
+
+Spatial interpolation was carried out for each year from 2000 to 2024
+using the end-of-the-year (December) water table elevations to maintain
+annual consistency. A specific yield of 0.15, representative of Salt
+Lake Valley, was applied during storage conversion (Victor M. Heilweil
+and Lynette E. Brooks 2011)
+
+The resulting storage change estimate presented along with the
+surface-water-storage-adjusted GRACE estimate in Figure-7.
+
+The In-Situ GWSa (orange line) reveals a pronounced and accelerating
+decline post-2011, indicating severe, sustained groundwater depletion.
+The storage anomaly drops significantly, reaching its lowest point of
+below -10 cm around 2022. In volumetric units, the in-situ analysis
+revealed a net groundwater volume loss of approximately 4.2 km3 over the
+22-year period.
+
+The in-situ results show a larger magnitude of storage change relative
+to the GRACE results. Furthermore, the two datasets are out of synch
+over much of the time range. A statistical comparison between the GRACE
+and In Situ results confirms a weak linear relationship. The Pearson
+correlation coefficient (r) is 0.1721, with a corresponding coefficient
+of determination (R² = 0.0296), indicating that the unfactored-adjusted
+GRACE estimates explain only about 3\% of the observed variability in
+the in-situ groundwater data.
+
+\includegraphics[width=6.78958in,height=3.59236in]{GSLB_GW_Storage_v03/media/image11.png}
+
+Figure 7. A relationship between unfactored adjusted GWSa from GRACE and
+in-situ GWSa
+
+\subsection{Leakage Factor Adjustment}\label{leakage-factor-adjustment}
+
+As described above, GRACE-derived estimates of groundwater storage
+change suffer from a leakage effect. In the case of the GSLB, much of
+the groundwater extraction is focused on a north south strip of land
+referred to as the ``Wasatch Front'' where the majority of population in
+the basin resides. The raw GRACE data prior to downscaling is at a
+resolution of 3x3 degrees which extends far beyond the Wasatch Front
+range. Because leakage tends to underestimate groundwater storage
+magnitudes, we theorized that the leakage effect could explain the large
+discrepancy between the adjusted GRACE results and the in-situ results.
+
+To test this theory, we applied a leakage factor (Lf) to the GRACE TWSa
+dataset in the groundwater storage equation as follows:
+
+\[\begin{array}{r}
+GWSa = Lf*TWSa - (SWEa + SMSa + CANa)\#()
+\end{array}\]
+
+We refer this this as the ``factored-adjusted GRACE GWSa''.
+
+Assuming that the GWSa derived from in situ data represents a form of
+``ground truth'', we then experimented with the leakage factor until we
+found a good agreement between the two datasets. We found that applying
+a leakage factor of 2 significantly improved agreement between
+GRACE-based GWSa trends and magnitudes and GWSa values calculated from
+the in-situ data, as shown in Figure 8. Except in the early years, the
+trend aligns between factored-adjusted GRACE GWSa and in situ-based
+GWSa. A significant magnitude difference was observed in 2009, 2021,
+2022, and 2024.
+
+\includegraphics[width=6.78958in,height=3.66528in]{GSLB_GW_Storage_v03/media/image13.png}
+
+Figure 8. A relationship between factored adjusted GWSa from GRACE and
+in-situ GWSa using a leakage factor = 2.0.
+
+The factored-adjusted GRACE GWSa demonstrates a strong positive
+correlation with the in-situ data (Pearson coefficient = 0.77). It
+successfully captures the critical depletion trend, mirroring the
+pronounced and accelerating decline observed post-2011. The trajectory
+of the factored-adjusted GRACE data aligns well with the in-situ
+measurements, confirming the effectiveness of the leakage correction
+factor.
+
+Groundwater storage withdrawal from Utah wells in 2017 was reported at
+1.19 km³ (Lincoln R. Smith 2019). Our analysis, using the adjusted GRACE
+dataset, indicates a depletion of 2.05 km³ for the same year.
+Considering that the GSLB extends into neighboring states and interacts
+with river systems, our results provide a closer alignment with the
+reported withdrawal estimates.
+
+\subsection{GLDAS 2.2}\label{gldas-2.2}
+
+Next, we compared groundwater storage anomaly (GWSa) estimates from the
+GLDAS v2.2 CLSM model to four different datasets: unadjusted GRACE GWSa,
+adjusted GRACE GWSa, factored-adjusted GRACE- GWSa, and the in-situ
+GWSa. Among these comparisons, the strongest relationship was observed
+between GLDAS v2.2 CLSM and in-situ GWSa as shown in figure-9 with a
+Pearson correlation coefficient (r) of 0.8146, corresponding to R² =
+0.6636 and a p-value \textless{} 0.001, indicating a highly significant
+correlation. There is an especially strong relationship with an R² =
+0.91 from 2003 to 2012. The relationship of the next decade has a
+moderate R² = 0.64.
+
+\includegraphics[width=6.78958in,height=3.78194in]{GSLB_GW_Storage_v03/media/image16.png}
+
+Figure 9. A relationship between unadjusted GLDAS V2.2 CLSM MODEL GWSa
+and GWDM-based in-situ GWSa
+
+The second strongest correlation was found between GLDAS v2.2 CLSM and
+the factored-adjusted GRACE GWSa, with r = 0.6739, R² = 0.4542, and p =
+0.0006 . The plot is shown in figure-10
+
+\includegraphics[width=6.78958in,height=3.45208in]{GSLB_GW_Storage_v03/media/image18.png}
+
+Figure 10. A relationship between GLDAS V2.2 CLSM MODEL GWSa and
+factored adjusted GRACE-based GWSa
+
+By contrast, the correlations between GLDAS v2.2 CLSM and the unadjusted
+as well as the adjusted (unfactored) GRACE-based GWSa were relatively
+weak (r \textless{} 0.2), with the adjusted scenario showing almost no
+linear relationship (r = 0.0072, R² = 0.0001, p = 0.9745). These
+findings suggest that incorporating the leakage factor markedly improves
+the agreement between GRACE-based and model-derived GWSa estimates. It
+is important to note that the GLDAS v2.2 CLSM GWSa used in this analysis
+is unadjusted, as surface water storage anomalies (SWSa) were not
+subtracted; when SWSa is included, the R² drops below 0.2.
+
+\subsection{}\label{section-1}
+
+\subsection{}\label{section-2}
+
+\subsection{}\label{section-3}
+
+\subsection{}\label{section-4}
+
+\subsection{}\label{section-5}
+
+\subsection{}\label{section-6}
+
+\subsection{}\label{section-7}
+
+\subsection{}\label{section-8}
+
+\subsection{Precipitation}\label{precipitation-1}
+
+To see the relationships between precipitation and groundwater storage
+anomaly, we analyzed the correlation between precipitation and
+groundwater storage anomaly (GWSa) derived from three datasets: the
+factored-adjusted GRACE GWSa, the GLDAS v2.2 GWSa, and the in-situ GWSa.
+In addition to using original precipitation values, we examined
+precipitation with one, two, three, and four-year temporal shifts to
+capture potential lagged recharge effects. The results are shown in
+figure-11.
+
+\includegraphics[width=6.78958in,height=3.35in]{GSLB_GW_Storage_v03/media/image21.png}
+
+Figure 11. A relationship between one -year lag precipitation and GWSa
+
+The results reveal that direct correlations between precipitation and
+GWSa of different methods are generally weak, but the strength of
+association improves when lagged precipitation is considered. For
+factored-adjusted GRACE GWSa, the correlation with original
+precipitation is low (r = 0.19). The relationship strengthens
+substantially when a one-year precipitation lag is introduced (r =
+0.42), before declining at longer lags (two-year: r = 0.17; three-year:
+r = 0.06)
+
+The GLDAS 2.2 CLSM model exhibits a somewhat different pattern. Although
+the correlation with original precipitation is weak (r = 0.25), the
+association increases sharply at the one-year lag (r = 0.72), indicating
+that the model simulates a rapid and strong linkage between
+precipitation and groundwater recharge. However, correlations diminish
+markedly at longer lags (two-year: r = 0.11; three-year: r = --0.40;
+four-year: r = --0.10)
+
+In contrast, the GWDM-based in-situ dataset shows its strongest
+correlation at the two-year lag (r = 0.60), followed by a slightly
+smaller but still meaningful relationship at the one-year lag (r =
+0.59). The correlation with original precipitation is modest (r = 0.27),
+while longer lags result in negative associations (three-year: r =
+--0.12; four-year: r = --0.19). These results highlight that in-situ
+groundwater levels capture slower recharge processes. In contrast, the
+other datasets show short-term hydrologic processes and may
+underestimate longer-term groundwater storage responses to
+precipitation.
+
+Additionally, we compared the in-situ GWSa with three-year and five-year
+average rainfall to explore the influence of long-term precipitation
+variability on groundwater storage. The analysis revealed a Pearson
+correlation coefficient of 0.6673 for the three-year average rainfall
+and 0.6194 for the five-year average rainfall when compared with
+GWDM-based in-situ GWSa. These findings indicate that the three-year
+rainfall average exhibits a stronger relationship with groundwater
+storage than both the one-year lag and the longer five-year average,
+suggesting that groundwater response in the basin is more closely
+aligned with multi-year cumulative rainfall trends rather than immediate
+or extended precipitation variations. The relationship can be seen in
+figure-12.
+
+\includegraphics[width=6.78958in,height=3.27361in]{GSLB_GW_Storage_v03/media/image22.png}
+
+Figure 12. a relationship between moving average precipitation and GWDM
+in-situ GWSa
+
+\section{Discussion}\label{discussion}
+
+Our analysis examines various datasets to identify anomalies in
+groundwater storage in GSLB, with each dataset showing different
+results. One of the key findings is the minimal correlation between
+unfactored-adjusted GRACE GWSa and in-situ GWSa, with a Pearson
+coefficient of less than 0.2. This discrepancy is primarily caused by a
+spatial leakage, a known limitation of GRACE data by its coarser spatial
+resolution (300-400 km), which allows mass changes from small or
+localized areas to leak into surrounding grid cells.
+
+To address this problem, we introduced a leakage factor of 2 to the
+GRACE's total water storage anomaly (TWSa). This significantly improved
+the relationship between adjusted GRACE GWSa and in-situ GWSa, with a
+Pearson coefficient of 0.77.
+
+Although there was a noticeable difference in magnitude from 2012 to
+2024, the GLDAS v2.2 CLSM model exhibited a strong correlation with the
+in-situ GWSa (r = 0.8146, R² = 0.6636) and a moderately strong
+correlation with the factored-adjusted GRACE GWSa (r = 0.6739, R² =
+0.4542). The relationship between GLDAS v2.2 GWSa and in-situ GWSa is
+highest when surface water storage anomalies (SWSa) are not included,
+whereas incorporating SWSa results in a substantially lower correlation
+(R² \textless{} 0.2)
+
+Our analysis of precipitation also provided crucial hydrological
+information about the GSLB. A direct relationship between the GWSa and
+precipitation is weak; it improves significantly with a one-year lag and
+a three-year average in rainfall. A correlation between In-situ GWSa and
+precipitation even increased with a two-lag period.
+
+\section{Conclusion}\label{conclusion}
+
+This study successfully assessed the groundwater storage dynamics in the
+Great Salt Lake Basin (GSLB) using satellite-based (GRACE), model-based
+(GLDAS2.2 CLSM), and in situ-based datasets.
+
+Our analysis indicates a loss of 4.26 km³ of groundwater over the
+22-year period (2002-2024). We observed a continuous decline in
+groundwater levels from 2011 to 2016 and from 2019 to 2022.
+
+By validating a methodology for adjusting GRACE data, this research
+provides a framework for future hydrological studies in the Great Salt
+Lake Basin (GSLB). It shows that for this specific basin, we can
+multiply the TWSa of GRACE by a leakage factor of 2, which can be used
+to monitor groundwater storage without constantly relying on in situ
+validation in the future. to monitor groundwater storage without
+constantly relying on in situ validation in the future.
+
+\textbf{References}
+
+Abbott, Benjamin W, Bonnie K Baxter, Karoline Busche, et al. 2023.
+\emph{Emergency Measures Needed to Rescue Great Salt Lake from Ongoing
+Collapse}. https://doi.org/10.13140/RG.2.2.22103.96166.
+
+Alan Buis, NASA's Jet Propulsion Laboratory. 2017. \emph{GRACE
+Satellites End 15-Year Science Mission}.
+https://sealevel.nasa.gov/news/101/grace-satellites-end-15-year-science-mission.
+
+Barbosa, Sergio A., Norman L. Jones, Gustavious P. Williams, et al.
+2023. ``Exploiting Earth Observations to Enable Groundwater Modeling in
+the Data-Sparse Region of Goulbi Maradi, Niger.'' Preprint, Engineering,
+August 30. https://doi.org/10.20944/preprints202308.2021.v1.
+
+Barbosa, Sergio A., Norman L. Jones, Gustavious P. Williams, et al.
+2025. ``A Multi-Source Approach to Groundwater Storage and Recharge
+Assessment in the Volta Basin.'' \emph{Science of The Total Environment}
+1001 (October): 180421. https://doi.org/10.1016/j.scitotenv.2025.180421.
+
+Barbosa, Sergio A., Sarva T. Pulla, Gustavious P. Williams, Norman L.
+Jones, Bako Mamane, and Jorge L. Sanchez. 2022. ``Evaluating Groundwater
+Storage Change and Recharge Using GRACE Data: A Case Study of Aquifers
+in Niger, West Africa.'' \emph{Remote Sensing} 14 (7): 1532.
+https://doi.org/10.3390/rs14071532.
+
+Berhanu, Kibru Gedam, Tarun Kumar Lohani, and Samuel Dagalo Hatiye.
+2024. ``Long-Term Spatiotemporal Dynamics of Groundwater Storage in the
+Data-Scarce Region: Tana Sub-Basin, Ethiopia.'' \emph{Heliyon} 10 (3):
+e24474. https://doi.org/10.1016/j.heliyon.2024.e24474.
+
+Chen, Jianli, Anny Cazenave, Christoph Dahle, et al. 2022.
+``Applications and Challenges of GRACE and GRACE Follow-On Satellite
+Gravimetry.'' \emph{Surveys in Geophysics} 43 (1): 305--45.
+https://doi.org/10.1007/s10712-021-09685-x.
+
+Cho, Younghyun. 2024. ``Analysis of Terrestrial Water Storage Variations
+in South Korea Using GRACE Satellite and GLDAS Data in Google Earth
+Engine.'' \emph{Hydrological Sciences Journal} 69 (8): 1032--45.
+https://doi.org/10.1080/02626667.2024.2351067.
+
+Clyde, Calvin G, Christopher J Duffy, Edward P Fisk, Daniel H Hoggan,
+and David E Hansen. n.d. \emph{Management of Groundwater Recharge Areas
+in the Mouth of Weber Canyon}.
+
+David Tarboton. 2023. ``Great Salt Lake Basin Reservoir Storage.''
+https://www.hydroshare.org/resource/5035e8eff7284881bf61128553b64d47/.
+
+David Tarboton. 2023. ``Great Salt Lake Level and Volume Time Series.''
+https://www.hydroshare.org/resource/45b43d72928048a8bc10a009d932f769/.
+
+Evans, Steven, Gustavious P. Williams, Norman L. Jones, Daniel P. Ames,
+and E. James Nelson. 2020. ``Exploiting Earth Observation Data to Impute
+Groundwater Level Measurements with an Extreme Learning Machine.''
+\emph{Remote Sensing} 12 (12): 2044. https://doi.org/10.3390/rs12122044.
+
+Frappart, Frédéric, and Guillaume Ramillien. 2018. ``Monitoring
+Groundwater Storage Changes Using the Gravity Recovery and Climate
+Experiment (GRACE) Satellite Mission: A Review.'' \emph{Remote Sensing}
+10 (6): 829. https://doi.org/10.3390/rs10060829.
+
+Funk, Chris, Pete Peterson, Martin Landsfeld, et al. 2015. ``The Climate
+Hazards Infrared Precipitation with Stations---a New Environmental
+Record for Monitoring Extremes.'' \emph{Scientific Data} 2 (1): 150066.
+https://doi.org/10.1038/sdata.2015.66.
+
+ggst. n.d. ``Grace Groundwater Subsetting Tool.'' Accessed November 30,
+2025. https://apps.geoglows.org/apps/ggst/.
+
+Great Salt Lake Strike Team. 2024. ``GREAT SALT LAKE DATA AND INSIGHTS
+SUMMARY.'' January 10.
+
+Guardiola-Albert, C., N. Naranjo-Fernández, J. S. Rivera-Rivera, et al.
+2024. ``Enhancing Groundwater Management with GRACE-Based Groundwater
+Estimates from GLDAS-2.2: A Case Study of the Almonte-Marismas Aquifer,
+Spain.'' \emph{Hydrogeology Journal} 32 (7): 1833--52.
+https://doi.org/10.1007/s10040-024-02838-3.
+
+Hall, Dorothy K., Bryant D. Loomis, Nicolo E. DiGirolamo, and Barton A.
+Forman. 2024. ``Snowfall Replenishes Groundwater Loss in the Great Basin
+of the Western United States, but Cannot Compensate for Increasing
+Aridification.'' \emph{Geophysical Research Letters} 51 (6):
+e2023GL107913. https://doi.org/10.1029/2023GL107913.
+
+Jasechko, Scott, Hansjörg Seybold, Debra Perrone, et al. 2024. ``Rapid
+Groundwater Decline and Some Cases of Recovery in Aquifers Globally.''
+\emph{Nature} 625 (7996): 715--21.
+https://doi.org/10.1038/s41586-023-06879-8.
+
+Kruskopf, Meryl, Lance Gilliland, Brent Roberts, Amanda Markert, William
+Ashmall, and Ashutosh Limaye. 2025. ``ClimateServ: An Open Source Earth
+Observation Climate Data Access Tool.'' \emph{Environmental Modelling \&
+Software} 194 (October): 106709.
+https://doi.org/10.1016/j.envsoft.2025.106709.
+
+Leonard F. Konikow. 2013. \emph{Groundwater Depletion in the United
+States (1900--2008)}. Scientific Investigations 2013−5079. U.S.
+Geological Survey. https://pubs.usgs.gov/sir/2013/5079/SIR2013-5079.pdf.
+
+Lincoln R. Smith. 2019. \emph{Groundwater Conditions in Utah, Spring of
+2018}. COOPERATIVE INVESTIGATIONS No. 59. U.S. Geological Survey.
+https://www.usgs.gov/publications/groundwater-conditions-utah-spring-2018.
+
+Nenweli, Ritshidze, Andrew Watson, Andrea Brookfield, Zahn Münch, and
+Reynold Chow. 2024. ``Is Groundwater Running out in the Western Cape,
+South Africa? Evaluating GRACE Data to Assess Groundwater Storage during
+Droughts.'' \emph{Journal of Hydrology: Regional Studies} 52 (April):
+101699. https://doi.org/10.1016/j.ejrh.2024.101699.
+
+Norm Jones. n.d. ``Ground Water Data Mapper.'' Accessed November 30,
+2025. https://gwdm.readthedocs.io/en/latest/.
+
+Purdy, Adam J., Cédric H. David, Md. Safat Sikder, et al. 2019. ``An
+Open-Source Tool to Facilitate the Processing of GRACE Observations and
+GLDAS Outputs: An Evaluation in Bangladesh.'' \emph{Frontiers in
+Environmental Science} 7 (October): 155.
+https://doi.org/10.3389/fenvs.2019.00155.
+
+Ramirez, Saul G., Gustavious Paul Williams, and Norman L. Jones. 2022.
+``Groundwater Level Data Imputation Using Machine Learning and Remote
+Earth Observations Using Inductive Bias.'' \emph{Remote Sensing} 14
+(21): 5509. https://doi.org/10.3390/rs14215509.
+
+Shepard, Daniel, Norman L. Jones, and Gustavious P. Williams. 2025a.
+``Application of the Groundwater Data Mapper Tool to Assess Storage
+Changes in a Groundwater-Driven Basin in the Klamath Watershed, Oregon,
+USA.'' \emph{Hydrology} 12 (6): 140.
+https://doi.org/10.3390/hydrology12060140.
+
+Shepard, Daniel, Norman L. Jones, and Gustavious P. Williams. 2025b.
+``Application of the Groundwater Data Mapper Tool to Assess Storage
+Changes in a Groundwater-Driven Basin in the Klamath Watershed, Oregon,
+USA.'' \emph{Hydrology} 12 (6): 140.
+https://doi.org/10.3390/hydrology12060140.
+
+Stephan, Raya Marina, James E. Nickum, and Philip Wester. 2019.
+``Groundwater.'' \emph{Water Resources}.
+https://api.semanticscholar.org/CorpusID:239850932.
+
+Tapley, B. D., S. Bettadpur, M. Watkins, and C. Reigber. 2004. ``The
+Gravity Recovery and Climate Experiment: Mission Overview and Early
+Results.'' \emph{Geophysical Research Letters} 31 (9): 2004GL019920.
+https://doi.org/10.1029/2004GL019920.
+
+UNESCO World Water Assessment Programme. 2022. \emph{The United Nations
+World Water Development Report 2022: Groundwater: Making the Invisible
+Visible; Facts and Figures}. Programme and Meeting Document No.
+0000380733. UNESCO. https://unesdoc.unesco.org/ark:/48223/pf0000380733.
+
+USGS. 2019. ``National Water Information System (NWIS) Mapper \textbar{}
+U.S. Geological Survey.''
+https://www.usgs.gov/tools/national-water-information-system-nwis-mapper.
+
+Utah Division of Water Resources. 2010. \emph{JORDAN RIVER BASIN
+PLANNING FOR THE FUTURE}. U T A H S T A T E W A T E R P L A N.
+https://water.utah.gov/wp-content/uploads/2019/SWP/JordanRiver/Jordan-River-Basin-Final2010.pdf.
+
+Utah Division of Water Resources. 2014. \emph{UTAH LAKE BASIN PLANNING
+FOR THE FUTURE}. UTAH STATE WATER PLAN.
+https://water.utah.gov/wp-content/uploads/2019/SWP/UtahLake/UtahLake2014.pdf.
+
+Utah Division of Water Resources. n.d. \emph{Utah State Water Plan -
+West Desert Basin}. Utah Department of Natural Resources.
+https://water.utah.gov/wp-content/uploads/2019/SWP/WestDesert/WestDes2001.pdf.
+
+Victor M. Heilweil and Lynette E. Brooks. 2011. \emph{Conceptual Model
+of the Great Basin Carbonate and Alluvial Aquifer System}. Scientific
+Investigations Nos. 2010--5193. USGS.
+
+Yan, Xiao, Bao Zhang, Yibin Yao, Jiabo Yin, Hansheng Wang, and Qishun
+Ran. 2022. ``Jointly Using the GLDAS 2.2 Model and GRACE to Study the
+Severe Yangtze Flooding of 2020.'' \emph{Journal of Hydrology} 610
+(July): 127927. https://doi.org/10.1016/j.jhydrol.2022.127927.
+
+Zhang, Bao, Yibin Yao, and Yulin He. 2022. ``Bridging the Data Gap
+between GRACE and GRACE-FO Using Artificial Neural Network in
+Greenland.'' \emph{Journal of Hydrology} 608: 127614.
+https://doi.org/10.1016/j.jhydrol.2022.127614.
+
+\textbf{Tables}
+
+\textbf{Figures}
+
+\end{document}
