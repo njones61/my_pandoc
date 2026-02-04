@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Convert Word documents (.docx) to LaTeX format using pandoc."""
 
-import argparse
 import subprocess
 import sys
 import zipfile
 from pathlib import Path
+
+# ============ SPECIFY INPUT FILE HERE ============
+INPUT_FILE = "gwbase_manuscript_07.docx"
+# =================================================
 
 
 def convert_docx_to_latex(
@@ -148,44 +151,14 @@ def batch_convert(
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Convert Word documents to LaTeX using pandoc"
-    )
-    parser.add_argument(
-        "input",
-        help="Input .docx file or directory containing .docx files",
-    )
-    parser.add_argument(
-        "-o", "--output",
-        help="Output directory (default: same location as input)",
-    )
-    parser.add_argument(
-        "--no-standalone",
-        action="store_true",
-        help="Don't include LaTeX preamble (fragment only)",
-    )
-    parser.add_argument(
-        "--no-media",
-        action="store_true",
-        help="Don't extract media files",
-    )
-
-    args = parser.parse_args()
-
-    input_path = Path(args.input)
-    output_path = Path(args.output) if args.output else None
-
-    kwargs = {
-        "standalone": not args.no_standalone,
-        "extract_media": not args.no_media,
-    }
+    input_path = Path(INPUT_FILE)
 
     try:
         if input_path.is_dir():
-            results = batch_convert(input_path, output_path, **kwargs)
+            results = batch_convert(input_path)
             print(f"\nConverted {len(results)} file(s)")
         else:
-            convert_docx_to_latex(input_path, output_path, **kwargs)
+            convert_docx_to_latex(input_path)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)

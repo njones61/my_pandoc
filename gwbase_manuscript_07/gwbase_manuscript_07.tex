@@ -1,0 +1,1703 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+Article
+
+GWBASE -- An Algorithm for Assessing the Impact of Groundwater Decline
+on Baseflow in US Streams
+
+Xueyi Li\textsuperscript{1}, Norman L. Jones\textsuperscript{1,}* and
+Gustavious P. Williams\textsuperscript{1}, Amin
+Aghababaei\textsuperscript{1}, Riley C. Hales\textsuperscript{1}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Academic Editor: Firstname Lastname
+
+Received: date
+
+Revised: date
+
+Accepted: date
+
+Published: date
+
+\textbf{Citation:} To be added by editorial staff during production.
+
+\textbf{Copyright:} © 2025 by the authors. Submitted for possible open
+access publication under the terms and conditions of the Creative
+Commons Attribution (CC BY) license
+(https://creativecommons.org/licenses/by/4.0/).
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\textsuperscript{1} Civil and Construction Engineering, Brigham Young
+University;
+\href{mailto:xueyil@student.byu.edu}{\nolinkurl{xueyil@student.byu.edu}}
+(X.L.); \href{mailto:njones@byu.edu}{\nolinkurl{njones@byu.edu}}
+(N.L.J.);
+\href{mailto:gus.p.williams@byu.edu}{\nolinkurl{gus.p.williams@byu.edu}}
+(G.P.W.)\textsuperscript{;}
+\href{mailto:aghababa@student.byu.edu}{\nolinkurl{aghababa@student.byu.edu}}
+(A.A.); \href{mailto:rchales@byu.edu}{\nolinkurl{rchales@byu.edu}}
+(R.C.H)
+
+\textbf{*} Correspondence: njones@byu.edu; Tel.: (+1-801-422-7569)
+
+\textbf{Abstract}
+
+A single paragraph of about 200 words maximum. For research articles,
+abstracts should give a pertinent overview of the work. We strongly
+encourage authors to use the following style of structured abstracts,
+but without headings: (1) Background: Place the question addressed in a
+broad context and highlight the purpose of the study; (2) Methods:
+briefly describe the main methods or treatments applied; (3) Results:
+summarize the article's main findings; (4) Conclusions: indicate the
+main conclusions or interpretations. The abstract should be an objective
+representation of the article and it must not contain results that are
+not presented and substantiated in the main text and should not
+exaggerate the main conclusions.
+
+\textbf{Keywords:} groundwater, baseflow, drought
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Introduction
+\end{enumerate}
+
+Baseflow represents the portion of streamflow that is sustained
+primarily by groundwater discharge during periods of little or no
+precipitation. It plays a critical role in maintaining streamflow
+continuity, supporting aquatic ecosystems, and regulating water quality.
+Because baseflow reflects the long-term balance between groundwater
+recharge and discharge, understanding its variability is fundamental to
+evaluating watershed resilience under changing climatic and
+anthropogenic conditions.
+
+Groundwater can be a major contributor to baseflow in many basins,
+especially in regions with shallow water tables and permeable
+hydrogeologic formations. Numerous studies have demonstrated that
+reductions in groundwater storage can directly diminish baseflow,
+leading to streamflow depletion, reduced ecosystem health, and altered
+hydrologic regimes {[}1{]}{[}2{]}{[}3{]}. Recent research has documented
+widespread declines in groundwater levels across parts of the United
+States, particularly in intensively irrigated agricultural regions
+{[}4{]}{[}5{]}{[}6{]}. Investigations such as the \emph{New York Times}
+national groundwater assessment and recent studies in the Central Valley
+of California have highlighted significant long-term declines in water
+tables and associated streamflow reductions {[}7{]}. Other regional
+analyses have also reported similar trends in declining groundwater
+storage and reduced baseflow contributions, underscoring the urgency of
+understanding groundwater--surface water connectivity at large spatial
+scales. {[}8{]}
+
+The United States provides an unparalleled opportunity to study these
+interactions due to the availability of extensive, high-quality
+hydrologic observations. The USGS maintains national networks of both
+stream gages and groundwater wells, offering decades of concurrent daily
+streamflow and groundwater level data. This data richness makes it
+possible to explore groundwater--baseflow relationships systematically
+across diverse hydroclimatic and geologic settings.
+
+The objective of this study is to develop a generalized algorithm that
+leverages these national datasets to quantify the relationship between
+groundwater level variations and baseflow dynamics. Specifically, the
+algorithm is designed to (1) identify basins where groundwater and
+baseflow are hydrologicallyconnected, and (2) evaluate how declining
+groundwater levels influence streamflow during baseflow-dominated
+periods. We have implemented this algorithm in a Python package called
+GWBASE.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Study Area
+\end{enumerate}
+
+Although this paper focuses primarily on the methodological development
+of the GWBASE algorithm, we demonstrate the application of the algorithm
+within the Great Salt Lake Basin (GSLB) in Utah (Figure 1). The GSLB is
+a closed hydrologic system in which all surface water drains toward the
+Great Salt Lake, a terminal lake with no outlet to the ocean. Streamflow
+is supplied mainly by snowmelt-fed rivers rising in the Wasatch and
+Uinta mountains, while evaporation accounts for most losses. Annual
+precipitation ranges from roughly 10--65 cm in the low-elevation valleys
+to more than 100 cm in the surrounding mountain headwaters, producing
+strong hydroclimatic gradients and sustained groundwater--surface water
+exchange {[}9{]}.
+
+\begin{quote}
+\includegraphics[width=3.61043in,height=5.33786in]{gwbase_manuscript_07/media/image1.png}
+\end{quote}
+
+Figure 1. Great Salt Lake Basin (GSLB) study area
+
+The basin has an effective hydrologic area of about 55,000 km² and
+supports nearly two million residents concentrated in the Salt Lake
+City--Ogden urban corridor {[}10{]}. The lake and its tributaries play
+key ecological and economic roles, and recent declines in lake level
+have heightened concern about long-term reductions in inflows. This
+setting offers a relevant case study for evaluating how groundwater
+level changes may influence baseflow, and how a national-scale framework
+could support assessments of groundwater contributions to streamflow
+under changing hydrologic conditions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Data
+\end{enumerate}
+
+This study integrates two national‐scale datasets: (1) daily streamflow
+records from the United States Geological Survey (USGS) stream gaging
+network, and (2) groundwater level observations from the USGS National
+Groundwater Monitoring Network (NGWMN). Stream gages were used to
+delineate streamflow regimes and identify periods of baseflow dominance,
+while groundwater wells were analyzed to evaluate temporal variations in
+water table elevation (WTE).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Groundwater Level Data
+\end{enumerate}
+
+Groundwater level data were obtained from the United States Geological
+Survey (USGS) National Water Information System (NWIS) {[}11{]}. NWIS
+provides long-term observations of groundwater levels from over 850,000
+monitoring wells across the United States and contains millions of water
+level records. Each record includes well location, elevation, and depth
+to water table. These data were downloaded and processed to obtain water
+table elevations (WTE) referenced to mean sea level.
+
+Within the Great Salt Lake Basin (GSLB), a total of 8752 wells were
+identified with usable water-level records. The dataset includes both
+continuous and intermittent measurements collected from 1906 - 2023.
+Figure 2 shows the spatial distribution of these wells across the basin.
+The density of wells varies by subbasin, with higher concentrations in
+valley regions and fewer records in upland areas. Together, these wells
+provide a spatially extensive representation of groundwater conditions
+across the study domain.
+
+\includegraphics[width=3.6in,height=4.16058in]{gwbase_manuscript_07/media/image2.png}
+
+Figure . Wells in GSLB
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Streamflow data and gage information
+\end{enumerate}
+
+Daily streamflow data were obtained from the U.S. Geological Survey
+National Water Information System {[}12{]}. Observed discharge records
+were used as the surface water data source for this study. Stream gages
+with insufficient data coverage were excluded from the analysis.
+
+Stream gage location and network information were obtained from the
+National Water Model {[}12{]}. Gage locations were linked to stream
+reaches in the National Water Model to identify upstream--downstream
+relationships and delineate contributing basins. This information was
+used to support gage selection and to pair stream gages with nearby
+groundwater wells.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Hydrography Data
+\end{enumerate}
+
+Stream network and catchment boundaries used in this study were obtained
+from GEOGloWS, which provides globally consistent hydrologic features
+{[}13{]}. The GEOGloWS stream network represents the global river system
+as a connected set of stream reaches, each with a unique identifier,
+geometric attributes, and predefined upstream--downstream relationships.
+Corresponding catchment polygons delineate the contributing drainage
+area for each stream reach.
+
+Figure 3 presents the spatial layout of major streams and catchments
+used in this study. Together with the groundwater well data, these
+datasets form the foundation for the well--gage pairing and analysis
+described in Section 3.
+
+\begin{quote}
+\includegraphics[width=4.39014in,height=4.57153in]{gwbase_manuscript_07/media/image3.png}
+\end{quote}
+
+Figure . Streams in GSLB
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \hl{Baseflow classification label data}
+\end{enumerate}
+
+Daily streamflow records at each gage were accompanied by a binary
+indicator identifying baseflow-dominated conditions. This indicator (BFD
+= 1 for baseflow-dominated days and BFD = 0 otherwise) was obtained from
+an externally developed machine-learning classification framework
+{[}14{]}. In this study, the BFD flag was used directly as an input
+dataset to filter streamflow and groundwater observations, isolating
+periods when streamflow variability is expected to be primarily
+controlled by groundwater discharge rather than surface runoff
+processes.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Methods
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Overview
+  \end{enumerate}
+\end{enumerate}
+
+We developed a systematic algorithm to evaluate the relationship between
+groundwater level variations and streamflow during baseflow-dominated
+(BFD) periods, which we implemented in a Python package called GWBASE.
+The GWBASE workflow (Figure 4) integrates spatial pairing between wells
+and gages, temporal interpolation of groundwater levels, formation of
+water level change vs. baseflow change data pairs (ΔWTE--ΔQ), and a
+statistical analysis of ΔWTE--ΔQ relationships. The overall GWBASE
+workflow is illustrated in INSERT REF. Each of these steps is described
+in detail in the following section.
+
+\begin{quote}
+\includegraphics[width=5.236in,height=3.01623in]{gwbase_manuscript_07/media/image4.png}
+\end{quote}
+
+Figure . GWBASE workflow
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Algorithm Steps
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Step 1: Identify Stream Network and Upstream Catchments
+  \end{enumerate}
+\end{enumerate}
+
+In the first step, stream gages are first matched to catchments by
+placing each gage's coordinates inside the subbasin polygons. This
+provides the basic gage--catchment links. In many drainage systems,
+several gages can exist along the same flow path. If each gage are
+analyzed separately, their upstream areas would be processed repeatedly.
+To avoid this, the workflow identifies one terminal gage for each
+drainage network. A terminal gage is defined here as a gage that has no
+other gage located downstream.
+
+To identify these terminal locations, the stream network is converted
+into a directed graph using the catchment connectivity fields in the
+hydrographic dataset. The upstream catchment ID (LINKNO) and downstream
+link (DSLINKNO) form the graph structure. Using this representation,
+downstream paths are checked for every gage-associated catchment. Gages
+with no downstream path to another gage are classified as terminal. The
+initial list of terminals is then reviewed and adjusted using hydrologic
+knowledge to correct for classification errors.
+
+After the terminal gages are determined, their upstream contributing
+areas are delineated. This is done by tracing all catchments that drain
+to each terminal gage through the directed network. The result is a set
+of complete and non-overlapping upstream catchment groups. Groundwater
+wells are then intersected with these catchments to assign each well to
+the terminal gage that receives its drainage. These gage--well
+associations serve as the basis for the later groundwater--streamflow
+comparison.
+
+Figure 5 illustrates a simple example of how upstream catchments are
+identified for a terminal gage. In this network, gage A is the most
+downstream location. Along the main flow path, gage E drains catchment 5
+and flows into gage D, which drains catchment 4. Both E and D then flow
+into gage C, which drains catchment 3. Because C is downstream of both D
+and E, its upstream area includes catchments 3, 4, and 5. Gage B,
+located in catchment 2, also flows directly to gage A. Consequently, the
+total upstream drainage area of gage A consists of catchments 2, 3, 4,
+and 5 together with its own local catchment (catchment 1). This example
+shows how the upstream catchment set at any gage is formed by combining
+its own catchment with those of all upstream gages identified through
+the flow network.
+
+\begin{quote}
+\includegraphics[width=5.65807in,height=3.05609in]{gwbase_manuscript_07/media/image5.png}
+\end{quote}
+
+Figure . Example drainage network showing terminal and upstream gages,
+local catchments, and streamflow direction used to delineate
+contributing areas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Step 2: Locate Groundwater Wells within Catchments
+\end{enumerate}
+
+After the terminal drainage areas are defined, groundwater monitoring
+wells are spatially matched to the catchments in which they are located.
+This is done by intersecting well coordinates with catchment boundaries
+and confirming that each well falls within the expected area. The well
+locations are then linked to the corresponding terminal gage of the
+catchment. This produces a consistent set of well--gage pairs that
+reflects the natural watershed structure and provides the basis for
+comparing groundwater levels with downstream streamflow.
+
+Figure 6 illustrates the process of locating groundwater wells within a
+catchment. All wells situated inside the catchment boundary are
+identified through a point-in-polygon operation. This establishes the
+set of wells that contribute to the downstream gage and defines the
+spatial domain for subsequent groundwater--surface water comparison.
+
+\begin{quote}
+\includegraphics[width=5.07214in,height=2.6233in]{gwbase_manuscript_07/media/image6.png}
+\end{quote}
+
+Figure ．Find catchment area and wells
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Step 3: Associate Wells with Nearest Stream Segments
+\end{enumerate}
+
+Each well is further associated with the nearest stream segment to
+establish a more detailed hydrologic connection. Using the hydrographic
+network, the closest river reach to each well is identified and the
+corresponding reach identifier and streambed elevation are recorded.
+These attributes allow elevation-based screening in later steps, where
+wells with unrealistic vertical separation from the stream are removed.
+The resulting well--reach linkage ensures that groundwater levels are
+compared with the most physically relevant part of the stream network.
+
+Figure 7 demonstrates how each well is associated with the nearest
+stream segment. For every well, the closest reach in the stream network
+is identified, and the direction of the nearest-distance link is shown.
+This association ensures that each well is connected to a physically
+relevant part of the channel network, which is necessary for later
+elevation-based screening.
+
+\begin{quote}
+\includegraphics[width=4.96941in,height=2.36885in]{gwbase_manuscript_07/media/image7.png}
+\end{quote}
+
+Figure 7. Relate wells to stream segments
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Step 4: Filter Wells with Insufficient Data
+\end{enumerate}
+
+Groundwater level records are screened to remove well measurements that
+lack sufficient temporal coverage. A two-stage outlier check is applied,
+first using a Z-score method with a threshold of 3.0 to identify values
+that deviate strongly from the mean, and then using an interquartile
+range filter with a multiplier of 1.5 to remove observations outside the
+expected data spread. These procedures remove extreme measurements that
+could affect later interpolation. Wells with fewer than two valid
+measurements are excluded because they do not provide enough information
+to represent seasonal or interannual variability. Only wells with
+adequate data density are retained for further analysis.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Step 5: Temporal Interpolation of Groundwater Levels
+\end{enumerate}
+
+Groundwater level time series are interpolated to daily resolution using
+the Piecewise Cubic Hermite Interpolating Polynomial (PCHIP) method.
+This approach preserves monotonic patterns between observations and
+avoids unrealistic oscillations that can occur with traditional spline
+interpolation. As Figure 8 shown below, for each well, observation dates
+are converted to numerical time, the PCHIP function is applied between
+consecutive measurements, and daily values are generated across the
+entire period of record. Local extrema are preserved, and the resulting
+time series maintains hydrologic realism. The interpolated results are
+then combined with well metadata, including location and surface
+elevation, to form a consistent dataset for later comparison with daily
+streamflow records.
+
+\begin{quote}
+\includegraphics[width=5.63774in,height=1.75338in]{gwbase_manuscript_07/media/image8.png}
+\end{quote}
+
+Figure . Example of daily groundwater level interpolation using the
+PCHIP method.
+
+Red points represent original groundwater level observations, and the
+blue line shows the PCHIP-interpolated daily time series. The method
+preserves monotonic trends and local extrema while avoiding artificial
+oscillations.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  Step 6: Elevation-Based Filtering
+\end{enumerate}
+
+To focus on wells with realistic potential for groundwater and surface
+water interaction, an elevation-based screening is applied. The logic is
+that well with water levels far below the stream elevation are not
+likely to impact baseflow to the stream. For each well, the interpolated
+water table elevation is compared with the elevation of the nearest
+stream segment identified in previous steps. Wells with water levels far
+below the local streambed are removed, since these conditions typically
+represent deep or confined aquifers with limited influence on
+streamflow. This procedure retained wells where groundwater levels are
+close to or higher than the nearby stream channel, reflecting conditions
+that can support hydrologic exchange.
+
+Figure 9 shows a simple example of the elevation-based filter using a 30
+m buffer. The blue line marks the streambed elevation. Wells plotted in
+the blue or green zones fall within 30 m of the streambed and are kept
+for analysis. Wells in the red zone lie more than 30 m below the
+streambed and are removed. This example illustrates how vertical
+separation is used to decide whether a well is likely to interact with
+the nearby stream.
+
+\begin{quote}
+\includegraphics[width=6.29699in,height=2.69184in]{gwbase_manuscript_07/media/image9.tiff}
+\end{quote}
+
+Figure . Conceptual illustration of elevation-based well filtering using
+a 30 m buffer.
+
+The blue line represents the streambed elevation. Wells within 30 m of
+the streambed (blue and green zones) are retained, while wells more than
+30 m below the streambed (red zone) are excluded.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  Step 7: Pair Groundwater and Streamflow Records under
+  Baseflow-Dominated Conditions
+\end{enumerate}
+
+\hl{In our earlier study, we developed a machine learning classifier to
+identify baseflow-dominated days in daily streamflow records}
+\hl{{[}14{]}. The classifier labels each day as either
+baseflow-dominated or non-baseflow by evaluating streamflow behavior,
+and identifying periods when flow is sustained mainly by groundwater
+discharge rather than surface runoff.}
+
+For all dates labeled as baseflow-dominated, each well's daily water
+table elevation is paired with the streamflow observed on the same day
+at the corresponding terminal gage. These paired records represent
+hydrologic conditions when streamflow is primarily controlled by
+groundwater discharge, making them suitable for assessing
+groundwater--surface water connectivity.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  Step 8: Compute ΔWTE and ΔQ
+\end{enumerate}
+
+For each well--gage pair, the earliest BFD day was selected as the
+baseline condition, with initial water level (\emph{WTE₀}) and discharge
+(\emph{Q₀}). Subsequent BFD observations were converted to changes
+relative to the baseline as show in Equation 1 and Equation 2 :
+
+\[\begin{array}{r}
+_{}\#()
+\end{array}\]
+
+\[\begin{array}{r}
+_{}\#()
+\end{array}\]
+
+To illustrate this procedure, Figure 10 shows an example of a well--gage
+pair in which the first day classified as baseflow-dominated (BFD=1) is
+identified as the reference condition. On this date, the well's
+groundwater elevation (WTE₀) and the gage's stream discharge (Q₀) are
+marked with gold star symbols in the upper (WTE) and lower (Q) panels,
+respectively. Horizontal dashed lines indicate the baseline values, and
+a vertical connector links the two stars, emphasizing that both baseline
+quantities correspond to the same hydrologic moment. Periods classified
+as BFD=1 are shaded to highlight the subset of observations used in the
+subsequent computations. In this zone, each ΔWTE and the corresponding
+ΔQ are linked to form a dataset of ΔWTE--ΔQ pairs. These pairs form the
+basis of assessing the impact of rising or falling groundwater levels on
+baseflow.
+
+\begin{quote}
+\includegraphics[width=5.71443in,height=3.83206in]{gwbase_manuscript_07/media/image10.png}
+\end{quote}
+
+Figure . Example time series of groundwater level (WTE) and streamflow
+(Q) with baseflow-dominated (BFD) periods highlighted.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\item
+  Step 9: Analyze ΔWTE--ΔQ Relationships
+\end{enumerate}
+
+We use simple linear regression to evaluate the relationship between
+ΔWTE and ΔQ for each well--gage pair during baseflow-dominated periods
+and to quantify groundwater influence on streamflow. Correlation
+measures are used to identify wells that exhibit strong hydrologic
+connectivity. Spatial maps are created to visualize areas with high or
+low correlation across the study region. In addition, ΔWTE and ΔQ are
+aggregated by terminal gage and for the complete drainage network to
+assess collective groundwater-driven changes in streamflow.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Mutual Information Analysis
+\end{enumerate}
+
+Mutual information (MI) is used to quantify the statistical dependence
+between groundwater level changes (ΔWTE) and streamflow changes (ΔQ)
+during baseflow-dominated periods. Unlike linear correlation, MI can
+capture both linear and nonlinear relationships and does not assume a
+specific functional form between variables.
+
+For two random variables \(\)and \(\), mutual information is defined as:
+
+\[\begin{array}{r}
+()\sum_{}^{}{\sum_{}^{}{\left( \frac{()}{()()} \right)}}\#()
+\end{array}\]
+
+where \(\)is the joint probability distribution of \(\)and \(\), and
+\(\)and \(\) are their marginal distributions. Mutual information
+measures the reduction in uncertainty of one variable given knowledge of
+the other. A value of zero indicates statistical independence, while
+larger values indicate stronger dependence.
+
+In this study, MI is computed between ΔWTE and ΔQ for each well--gage
+pair using data from baseflow-dominated days only. MI is used as a
+complementary metric to linear regression and correlation, providing
+additional insight into groundwater--streamflow connectivity when
+relationships may be nonlinear or heterogeneous across space.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Cross-correlation function (CCF) analysis
+\end{enumerate}
+
+The cross-correlation function (CCF) is used to examine the temporal
+relationship between groundwater level changes (ΔWTE) and streamflow
+changes (ΔQ) during baseflow-dominated periods. CCF quantifies the
+similarity between two time series as a function of time lag and is used
+to identify delayed groundwater responses in streamflow.
+
+For two time series \(_{}\)and \(_{}\), the cross-correlation at lag
+\(\)is defined as:
+
+\[\begin{array}{r}
+_{}()\frac{\left(_{}_{} \right)}{_{}_{}}\#()
+\end{array}\]
+
+where \(\)is the covariance between the two series, \(_{}\)and
+\(_{}\)are their standard deviations, and \(\)represents the time lag.
+Positive lag values indicate that changes in groundwater levels precede
+changes in streamflow, while negative lags indicate the opposite.
+
+In this study, CCF is computed between ΔWTE and ΔQ for each well--gage
+pair using baseflow-dominated days only. The magnitude of the
+cross-correlation and the lag at which it peaks are used to assess the
+strength and timing of groundwater--streamflow interactions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \hl{Machine learning model}
+\end{enumerate}
+
+Baseflow-dominated (BFD) periods were identified using a
+machine-learning classification framework previously developed {[}14{]}.
+The model operates on daily streamflow time series and assigns a binary
+label to each day, where BFD = 1 indicates conditions dominated by
+groundwater discharge and BFD = 0 denotes periods influenced by surface
+runoff or event flow.
+
+The classifier was trained using hydrologically relevant features
+derived from streamflow dynamics, enabling it to distinguish
+recession-driven baseflow behavior from event-driven responses across a
+wide range of hydrologic regimes. Model performance and generalizability
+were evaluated in the original study using multiple gages and
+independent validation datasets.
+
+In the present work, the resulting BFD classifications were applied to
+each gage to filter streamflow and groundwater observations. Subsequent
+analyses were restricted to BFD = 1 periods, ensuring that inferred
+relationships between groundwater levels and streamflow reflect
+baseflow-controlled conditions rather than transient runoff responses.
+Figure 11 illustrates an example hydrograph with BFD periods
+highlighted.
+
+\includegraphics[width=3.95968in,height=3.03802in]{gwbase_manuscript_07/media/image11.png}
+
+Figure 11. Baseflow Dominant Flows (0-1)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Results
+\end{enumerate}
+
+We use the Great Salt Lake Basin (GSLB) as a case study to demonstrate
+our analytical framework. After applying the terminal gage
+identification algorithm, we identified 12 terminal gages in GSLB
+(Figure 12). These terminal gages represent the most downstream
+monitoring locations in their respective sub-watersheds, capturing the
+integrated hydrologic response of their contributing areas.
+
+\begin{figure}
+\centering
+\includegraphics[width=4.36636in,height=4.86131in]{gwbase_manuscript_07/media/image12.png}
+\caption{. Overview map}
+\end{figure}
+
+After data filtering based on data availability and quality criteria,
+only 6 of the 12 terminal gages retained sufficient concurrent
+streamflow and water table elevation (WTE) data to conduct the paired
+analysis. A representative subbasin is shown in Figure 13. The yellow
+star represents the terminal gage location where the Bear River gage is
+situated. The orange dots indicate additional streamflow gaging stations
+in the upstream network, and the brown squares represent groundwater
+monitoring wells distributed throughout the contributing watershed.
+
+\begin{quote}
+Bear River gage with upstream catchment
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Overall ΔWTE--ΔQ Relationships
+\end{enumerate}
+
+To quantify the strength and predictability of groundwater-streamflow
+coupling during baseflow-dominated periods, we performed linear
+regression analysis on all gage-well pairs using the relationship
+between change in streamflow (ΔQ) and change in water table elevation
+(ΔWTE). For each well, ΔWTE represents the deviation from the initial
+measured water table elevation, calculated after applying piecewise
+cubic Hermite interpolating polynomial (PCHIP) interpolation to ensure
+uniform daily time steps and ΔQ represents the change in baseflow from
+the baseline. The regression model takes the form:
+
+ΔQ = β₀ + β₁ · ΔWTE + ε
+
+where β₀ is the intercept, β₁ is the slope coefficient representing the
+sensitivity of streamflow change to groundwater level change, and ε is
+the residual error. The coefficient of determination (R²) quantifies the
+proportion of variance in ΔQ explained by ΔWTE:
+
+R² = 1 - (SS\_res / SS\_tot)
+
+SS\_res = Σᵢ (ΔQᵢ - ΔQ̂ᵢ)²
+
+SS\_tot = Σᵢ (ΔQᵢ - ΔQ̄)²
+
+Figure X presents scatter plots of ΔQ versus ΔWTE for all
+baseflow-dominated observations across the six analyzable gages in the
+GSLB. Each point represents a daily paired observation of concurrent
+streamflow change and groundwater level change from a single well-gage
+combination during periods classified as baseflow-dominated by our
+machine learning model. The overall analysis pooled 429,009 observations
+from 106 unique wells across 6 gages with sufficient data (Table X).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1703}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.5088}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1710}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1499}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Gage id
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+gage name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+r\_squared
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10126000 & BEAR RIVER NEAR CORINNE - UT & 1.071 & 0.001 \\
+10141000 & WEBER RIVER NEAR PLAIN CITY - UT & 0.304 & 0.014 \\
+10143500 & CENTERVILLE CREEK ABV. DIV NEAR CENTERVILLE - UT & 0.015 &
+0.063 \\
+10152000 & SPANISH FORK NEAR LAKE SHORE - UTAH & -0.747 & 0.003 \\
+10163000 & PROVO RIVER AT PROVO - UT & 0.659 & 0.004 \\
+10168000 & LITTLE COTTONWOOD CREEK @ JORDAN RIVER NR SLC & 0.025 &
+0.002 \\
+\end{longtable}
+
+The Bear River gage (ID: 10126000) exhibits a moderate positive linear
+relationship with R² = 0.001 and slope = 1.071 (p \textless{} 0.001),
+indicating statistically significant coupling despite the low R² value.
+The low R² but significant p-value suggests that while a linear trend
+exists, substantial scatter arises from measurement noise, well
+heterogeneity, and unmodeled hydrologic processes (e.g., lateral inflow
+variations, transient storage effects). The positive slope confirms the
+expected physical relationship: declining groundwater levels (negative
+ΔWTE) correspond to decreasing baseflow (negative ΔQ), and vice versa.
+
+\includegraphics[width=4.79389in,height=2.55418in]{gwbase_manuscript_07/media/image14.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Monthly Variation in ΔWTE--ΔQ Coupling
+\end{enumerate}
+
+Monthly stratification of the regression analysis reveals pronounced
+temporal variability in coupling strength, reflecting seasonal shifts in
+hydrologic regime and aquifer-stream connectivity (Figure Y, Table Y).
+For the Bear River gage, monthly R² values range from near-zero in
+winter/spring months to peak values exceeding 0.10 in late
+summer/autumn.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1226}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1279}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1034}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1456}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1251}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1251}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1251}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1251}}@{}}
+\caption{Table 1. INSERT CAPTION}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Gage id
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+month
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+wells
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+measurements
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+intercept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+r\_squared
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p\_value
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Gage id
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+month
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+wells
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+measurements
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+intercept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+r\_squared
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p\_value
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10126000 & January & 382 & 32038 & 0.42329408 & 356.719108 & 0.00017676
+& 0.01732403 \\
+10126000 & February & 363 & 16804 & 0.20330711 & 333.477274 & 5.21E-05 &
+0.34956104 \\
+10126000 & March & 225 & 2418 & 1.9782467 & 337.595215 & 0.00138637 &
+0.06716006 \\
+10126000 & April & 304 & 4343 & 0.1895384 & -142.50146 & 4.32E-05 &
+0.66494589 \\
+10126000 & May & 372 & 34812 & 0.73773674 & -193.31561 & 0.00069874 &
+8.11E-07 \\
+10126000 & June & 380 & 80064 & 1.11422373 & -182.76151 & 0.00142193 &
+1.35E-26 \\
+10126000 & July & 436 & 172418 & 1.51729829 & -188.98326 & 0.00249797 &
+8.79E-96 \\
+10126000 & August & 469 & 174632 & 1.80305046 & -148.83175 & 0.0026969 &
+1.44E-104 \\
+10126000 & September & 474 & 144785 & 1.80258499 & -86.751679 &
+0.00267814 & 1.97E-86 \\
+10126000 & October & 391 & 123941 & 1.83750733 & 169.986498 & 0.00222707
+& 4.74E-62 \\
+10126000 & November & 379 & 68799 & 1.16313193 & 323.716363 & 0.00126492
+& 1.04E-20 \\
+10126000 & December & 381 & 49364 & 0.73492964 & 340.770515 & 0.00052904
+& 3.21E-07 \\
+\end{longtable}
+
+Winter months (December--February) exhibit the weakest coupling, with
+January R² = 0.00018 and February R² = 0.00005 (though January remains
+statistically significant at p = 0.017). The extremely low R² values
+during winter reflect minimal variability in both streamflow and
+groundwater levels due to frozen ground conditions, reduced recharge,
+and stable recession dynamics. The large sample sizes
+(\textgreater16,000 observations per month) provide statistical power to
+detect even weak trends, but the practical predictive utility is
+negligible.
+
+Spring months (March--May) show intermediate coupling as snowmelt
+begins. During this transition period, surface runoff contributions
+dilute the baseflow signal, introducing noise into the ΔWTE--ΔQ
+relationship. Wells located closer to the channel may respond rapidly to
+infiltrating snowmelt, while distant wells exhibit lagged responses,
+collectively broadening the scatter in the regression.
+
+Late summer and autumn months (July--October) display the strongest
+ΔWTE--ΔQ coupling. During this baseflow-dominated window, streamflow is
+sustained almost entirely by groundwater discharge, with minimal
+interference from surface runoff or precipitation. The enhanced coupling
+demonstrates that groundwater level fluctuations become the primary
+control on streamflow variability. The slope coefficients during these
+months also tend to be higher and more stable, indicating consistent
+linear sensitivity across the aquifer network.
+
+The monthly analysis confirms that aggregating data across the entire
+year dilutes the signal present during optimal coupling periods.
+Focusing future modeling efforts on the late summer/autumn window would
+maximize the predictive power of ΔQ--ΔWTE relationships for baseflow
+estimation.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Seasonal ΔWTE--ΔQ Coupling Patterns
+\end{enumerate}
+
+Aggregating monthly data into meteorological seasons (Winter: Dec--Feb,
+Spring: Mar--May, Summer: Jun--Aug, Fall: Sep--Nov) provides a coarser
+temporal lens for evaluating coupling dynamics while maintaining
+sufficient sample sizes for robust statistical inference.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.0983}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.0962}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.0962}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1454}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 16\tabcolsep) * \real{0.1128}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+gage\_id
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+season
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+wells
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+measurements
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+intercept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+r\_squared
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+p\_value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+std\_err
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10126000 & Fall & 475 & 337525 & 526.260819 & 33290.994 & 0.00133922 &
+2.26E-100 & 24.736169 \\
+10126000 & Spring & 381 & 41573 & 203.731292 & -57461.75 & 0.00031677 &
+0.00028439 & 56.1331772 \\
+10126000 & Summer & 470 & 427114 & 570.619309 & -62594.82 & 0.00236644 &
+4.58E-222 & 17.9272309 \\
+10126000 & Winter & 383 & 98206 & 194.255359 & 125912.609 & 0.00028991 &
+9.49E-08 & 36.4009862 \\
+\end{longtable}
+
+Fall exhibits the strongest coupling signal with R² = 0.00134 and slope
+= 526.26 (p \textless{} 2.26×10⁻¹⁰⁰), supported by the largest dataset
+(337,525 observations from 475 wells). The extremely small p-value
+reflects overwhelming statistical significance due to the massive sample
+size, even though the R² indicates that only 0.13\% of variance is
+explained by the linear relationship. However, this should be
+interpreted in context: the scatter arises from spatial heterogeneity
+(475 distinct wells with different hydraulic properties and distances to
+the stream) rather than weak coupling per se. Individual high-performing
+wells within this ensemble likely exhibit much stronger relationships
+(R² \textgreater{} 0.3--0.5), but are averaged down when pooled.
+
+Spring displays the second-highest R² (0.00032) despite having an order
+of magnitude fewer observations (41,573). This suggests that the wells
+active during spring may have more homogeneous hydraulic properties or
+more direct stream connectivity, reducing scatter. Alternatively, the
+restricted temporal window of spring baseflow periods (shorter duration
+between snowmelt peaks) may naturally limit the range of ΔWTE--ΔQ
+combinations, artificially tightening the regression.
+
+The seasonal aggregation confirms that Fall (late summer/autumn)
+provides the optimal data window for establishing predictive ΔWTE--ΔQ
+relationships. This aligns with hydrologic expectations: Fall conditions
+feature stable baseflow recession, minimal surface runoff interference,
+and sustained groundwater discharge.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Spatial Distribution of Well--Gage Coupling
+\end{enumerate}
+
+To examine spatial heterogeneity in groundwater--streamflow coupling,
+well-level R² values were mapped for each terminal gage. Figure
+14illustrates the spatial distribution of lagged R² values for the Bear
+River gage (ID 10126000), with wells colored by correlation strength.
+
+The map reveals pronounced spatial clustering of high-performing wells.
+While the majority of wells exhibit weak correlations (mean R² = 0.032),
+a small subset shows substantially stronger coupling, with maximum R²
+reaching 0.72. These high-R² wells are predominantly located along major
+valley corridors and proximal to the stream network, whereas distal or
+upland wells tend to exhibit weak or negligible dependence.
+
+This spatial structure indicates that the low pooled R² values primarily
+reflect averaging across hydraulically heterogeneous wells rather than
+an absence of groundwater--streamflow coupling.
+
+\includegraphics[width=4.41284in,height=3.38257in]{gwbase_manuscript_07/media/image15.png}
+
+Figure 14 Spatial distribution of well--gage coupling strength for the
+Bear River watershed.
+
+Wells are colored by lagged coefficient of determination (R²), with
+warmer colors indicating stronger ΔWTE--ΔQ dependence during
+baseflow-dominated periods. The yellow star marks the terminal gage
+location. Numbered red circles indicate the top 10 wells ranked by R².
+Despite low mean R² across all wells, a small subset exhibits strong,
+spatially clustered coupling, highlighting pronounced hydrogeologic
+heterogeneity within the basin
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  High-Performing Wells and Subset Reanalysis
+\end{enumerate}
+
+To evaluate whether a small number of hydraulically well-connected wells
+disproportionately drive the observed ΔWTE--ΔQ signal, we conducted a
+subset analysis using only the top 10 wells ranked by R² for each gage.
+
+Recomputing the ΔQ--ΔWTE regression using this reduced subset
+substantially increases explanatory power relative to the pooled
+analysis. For the Bear River gage, the mean R² across all wells is
+0.032, whereas the top-10 subset yields R² values exceeding X (Figure
+Y). This contrast demonstrates that strong groundwater--streamflow
+coupling exists locally but is obscured when averaged across
+heterogeneous well populations.
+
+These results suggest that identifying and weighting high-performing
+wells may significantly improve baseflow estimation and
+groundwater--streamflow attribution.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Mutual information+
+\end{enumerate}
+
+Figure X presents the spatial distribution of mutual information (MI)
+values for all well-gage pairs in the Bear River catchment during
+baseflow-dominated periods. The map reveals pronounced spatial
+heterogeneity in information coupling strength, with MI values ranging
+from near-zero to approximately 0.5 bits. Wells are color-coded
+according to their MI values, with warmer colors indicating higher
+information sharing with streamflow variations. \hl{(?}
+
+\includegraphics[width=6.25826in,height=4.69904in]{gwbase_manuscript_07/media/image16.png}
+
+Conversely, wells situated in coarse alluvial deposits immediately
+adjacent to the channel exhibit both high MI and proportionally high R²
+values. These wells show MI values of 0.30 to 0.48 bits coupled with R²
+values exceeding 0.40, closely following the theoretical relationship
+expected for bivariate Gaussian distributions. The concordance between
+MI and R² confirms that aquifer-stream coupling in these settings is
+approximately linear and can be effectively modeled using simple
+regression approaches. The high information content combined with linear
+functional form makes these wells optimal candidates for operational
+baseflow estimation.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Lagged versus Unlagged Coupling Metrics
+\end{enumerate}
+
+The choice between using concurrent (zero-lag) versus time-shifted
+(optimal-lag) groundwater observations for baseflow estimation involves
+trade-offs between model simplicity, data requirements, and predictive
+performance. While zero-lag approaches offer operational simplicity and
+immediate applicability to real-time monitoring, optimal-lag approaches
+may capture additional coupling strength in wells where hydraulic
+signals propagate with measurable time delays. To quantify these
+trade-offs systematically, we conducted a comprehensive comparison of
+coupling metrics computed under zero-lag versus optimal-lag
+configurations across all well-gage pairs in the Bear River basin.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1417}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0986}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1916}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0747}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1713}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1926}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1295}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+lag\_period
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+total\_observations
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+total\_unique\_wells
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+gages
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+avg\_observations\_per\_gage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+avg\_wells\_per\_gage
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+data\_retention\_pct
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+no\_lag & 429009 & 106 & 4 & 107252.25 & 28 & \\
+1\_year & 1493879 & 879 & 6 & 248979.833 & 146.5 & 348.216238 \\
+2\_year & 1362752 & 762 & 6 & 227125.333 & 127 & 317.651145 \\
+3\_year & 1171455 & 721 & 6 & 195242.5 & 120.166667 & 273.060705 \\
+6\_month\_lag & 977131 & 891 & 6 & 162855.167 & 148.5 & 227.764686 \\
+3\_month\_lag & 1174309 & 932 & 6 & 195718.167 & 155.333333 &
+273.725959 \\
+\end{longtable}
+
+For each well-gage pair, we computed three coupling metrics under both
+configurations: linear correlation coefficient (R), coefficient of
+determination (R²), and mutual information (MI). The zero-lag
+configuration uses concurrent daily observations of ΔQ(t) and ΔWTE(t).
+The optimal-lag configuration time-shifts the ΔWTE series by k* days,
+where k* is the lag that maximizes the correlation coefficient, yielding
+comparisons between ΔQ(t) and ΔWTE(t-k*). By examining the distribution
+of metric improvements and their spatial and hydrogeologic correlates,
+we aim to identify which wells benefit substantially from lag correction
+and which can be adequately characterized using simpler zero-lag
+formulations.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Cross-correlation function (CCF) analysis
+\end{enumerate}
+
+We computed CCF over a lag window of ±60 days for all well-gage pairs
+with sufficient baseflow-dominated observations. For each pair, we
+identified the lag value that maximizes the absolute correlation
+coefficient, and recorded both the optimal lag and the corresponding
+maximum correlation strength. This dual characterization enables
+assessment of both the timescale of aquifer-stream interaction and the
+strength of time-shifted coupling.
+
+Figure X presents the distribution of optimal lag values across all
+analyzed well-gage pairs in the Bear River basin. The histogram reveals
+a strongly peaked distribution centered near zero lag, with substantial
+asymmetry toward positive lags.
+
+\begin{quote}
+\includegraphics[width=6.5in,height=1.92014in]{gwbase_manuscript_07/media/image17.png}
+
+ADD A CAPTION
+\end{quote}
+
+Approximately 68\% of well-gage pairs achieve maximum correlation at
+zero lag, indicating that the dominant mode of coupling operates on
+timescales faster than the daily measurement resolution. This rapid
+response is characteristic of well-connected alluvial aquifers where
+hydraulic diffusivity is sufficiently high that pressure signals
+propagate nearly instantaneously over distances of several hundred
+meters to a few kilometers. For these wells, same-day groundwater
+observations contain the maximum information about concurrent streamflow
+variations, and incorporating time lags provides no improvement in
+predictive power.
+
+The remaining 32\% of well-gage pairs display optimal lags ranging from
+1 to 45 days, with a median optimal lag of approximately 14 days among
+this lagged subset. The distribution of non-zero lags is positively
+skewed, with 90\% of lagged wells showing optimal lags between 5 and 30
+days. This timescale range is consistent with diffusive propagation of
+hydraulic head changes through lower-permeability valley-fill deposits
+or across longer travel distances. Wells exhibiting optimal lags
+exceeding 30 days are relatively rare, comprising less than 5\% of the
+total population, and likely represent either very distant wells or
+wells screened in low-transmissivity units that respond sluggishly to
+stream stage variations.
+
+Negative lags, where streamflow appears to lead groundwater levels, are
+observed in approximately 8\% of well-gage pairs with optimal lags
+between -1 and -7 days. While such relationships seem physically
+counterintuitive for baseflow conditions, they can arise from several
+mechanisms. In gaining stream reaches where groundwater sustains
+baseflow, upstream precipitation events may simultaneously increase both
+streamflow and aquifer recharge, with the streamflow response appearing
+slightly faster due to rapid shallow subsurface flow paths.
+Alternatively, negative lags may reflect transient bank storage effects
+where rising stream stage induces temporary aquifer storage that
+subsequently drains back to the channel. These negative-lag wells
+represent a small fraction of the population and require careful
+interpretation of their hydrogeologic context.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Basin-Scale ΔWTE--ΔQ Relationships
+\end{enumerate}
+
+To evaluate groundwater--streamflow coupling at the basin scale, ΔQ and
+ΔWTE were aggregated across all analyzable terminal gages within the
+Great Salt Lake Basin (GSLB). For each gage, ΔQ and ΔWTE were first
+computed relative to the gage-specific baseline and then summed to
+obtain basin-wide daily changes during baseflow-dominated periods.
+
+Table 2summarizes the regression results for individual gages
+contributing to the basin-scale signal. While gage-level slopes vary in
+magnitude and sign, all relationships are statistically significant due
+to the large number of observations. The basin-scale aggregation
+integrates these heterogeneous local responses into a single
+system-level signal.
+
+Table 2 Individual terminal gages exhibit weak explanatory power when
+evaluated.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1386}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.4364}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1670}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1167}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1413}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+gage\_id\hspace{0pt}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Gage~name\hspace{0pt}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+slope\hspace{0pt}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+r\_squared\hspace{0pt}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p\_value\hspace{0pt}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10126000\hspace{0pt} & BEAR RIVER NEAR CORINNE - UT\hspace{0pt} &
+-0.1719403\hspace{0pt} & 0.00\hspace{0pt} & 0.00\hspace{0pt} \\
+10141000\hspace{0pt} & WEBER RIVER NEAR PLAIN CITY - UT\hspace{0pt} &
+0.30830181\hspace{0pt} & 0.00\hspace{0pt} & 0.00\hspace{0pt} \\
+10152000\hspace{0pt} & SPANISH FORK NEAR LAKE SHORE - UTAH\hspace{0pt} &
+0.0730415\hspace{0pt} & 0.00\hspace{0pt} & 0.00\hspace{0pt} \\
+10163000\hspace{0pt} & PROVO RIVER AT PROVO - UT\hspace{0pt} &
+-0.1039531\hspace{0pt} & 0.00\hspace{0pt} & 0.00\hspace{0pt} \\
+\end{longtable}
+
+Figure 15 shows the basin-scale relationship between normalized ΔQ and
+ΔWTE pooled across all contributing gages. The aggregated dataset
+reveals a weak but statistically significant linear trend, indicating a
+coherent basin-scale response despite substantial scatter at daily
+resolution.
+
+~\includegraphics[width=4.86in,height=2.9918in]{gwbase_manuscript_07/media/image18.jpeg}
+
+Figure 15 Basin-scale relationship between normalized ΔQ and ΔWTE
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Discussion
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Interpreting Weak Local ΔWTE--ΔQ Relationships
+  \end{enumerate}
+\end{enumerate}
+
+Across individual gages and pooled well--gage pairs, the ΔWTE--ΔQ
+relationships exhibit consistently low coefficients of determination. At
+first glance, these low R² values may appear to suggest weak
+groundwater--streamflow coupling. However, such an interpretation would
+be misleading for large, heterogeneous river basins such as the Great
+Salt Lake Basin (GSLB).
+
+At daily resolution, streamflow during baseflow-dominated periods is
+influenced not only by regional groundwater storage but also by a range
+of superimposed processes, including lateral inflows, transient bank
+storage, delayed drainage from hillslopes, and anthropogenic regulation.
+Groundwater level measurements further reflect local aquifer conditions
+that vary substantially in depth, hydraulic conductivity, and degree of
+hydraulic connection to the stream. When these heterogeneous signals are
+combined across hundreds of wells, substantial scatter is expected even
+in the presence of a physically meaningful groundwater contribution to
+baseflow.
+
+Importantly, the statistical significance observed across nearly all
+regressions reflects the large sample sizes rather than strong
+predictive skill. This distinction underscores that low R² values in
+this context should not be interpreted as an absence of coupling, but
+rather as a manifestation of spatial and temporal heterogeneity that
+obscures simple linear relationships at fine temporal scales.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Spatial Heterogeneity and Localized Groundwater--Stream Connectivity
+\end{enumerate}
+
+Spatial analyses provide critical insight into the structure underlying
+the weak pooled relationships. Mapping well-level dependence metrics
+reveals pronounced spatial heterogeneity, with strong clustering of
+high-performing wells near major stream corridors and within valley-fill
+alluvial aquifers. These wells exhibit substantially higher R² and
+mutual information values compared to the basin-wide average, indicating
+direct and responsive hydraulic connection to the stream network.
+
+Conversely, wells located farther from channels, screened in
+lower-permeability units, or situated in upland settings tend to show
+weak or negligible dependence. This pattern is consistent with
+conceptual models of gaining streams in semi-arid basins, where only a
+subset of the aquifer system actively contributes to baseflow over short
+timescales.
+
+The existence of spatially coherent clusters of high-performing wells
+demonstrates that groundwater--streamflow coupling is not uniformly
+distributed across the basin. Instead, it is highly localized and
+controlled by hydrogeologic setting. Aggregating across all wells
+therefore dilutes strong local signals, emphasizing the importance of
+spatial context when interpreting basin-scale statistics.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Linear Versus Nonlinear Dependence and the Role of Mutual Information
+\end{enumerate}
+
+While linear regression captures first-order sensitivity between ΔWTE
+and ΔQ, it inherently assumes a linear functional form that may not hold
+across all hydrogeologic settings. Mutual information analysis provides
+a complementary perspective by detecting dependence structures that are
+nonlinear, threshold-based, or intermittent.
+
+The comparison between R² and MI highlights several wells with moderate
+to high MI but weak linear correlation. These wells likely reflect
+nonlinear storage--discharge relationships, episodic hydraulic
+connection, or threshold behavior during periods of declining
+groundwater levels. In such cases, streamflow response may only become
+sensitive to groundwater decline once water tables fall below critical
+elevations, producing dependence that is poorly captured by linear
+regression.
+
+The combined use of R² and MI therefore provides a more complete
+characterization of groundwater--streamflow interactions. Linear metrics
+identify wells suitable for simple predictive modeling, while MI
+highlights wells that remain hydrologically informative despite
+nonlinear behavior. Together, these measures reinforce that groundwater
+influence on baseflow cannot be fully described by a single statistical
+metric.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Temporal Structure and the Significance of Lagged Responses
+\end{enumerate}
+
+Lag analysis further clarifies the temporal dynamics of
+groundwater--streamflow coupling. For the majority of well--gage pairs,
+maximum correlation occurs at zero lag, indicating that pressure signals
+propagate rapidly between the aquifer and stream at daily resolution.
+Such behavior is characteristic of well-connected alluvial systems with
+high hydraulic diffusivity.
+
+A substantial minority of wells, however, exhibit optimal lags ranging
+from several days to several weeks. These delayed responses are
+consistent with diffusive propagation of hydraulic head changes through
+lower-permeability materials or across greater distances from the
+channel. The presence of lagged coupling highlights that groundwater
+contributions to baseflow operate across a spectrum of timescales, even
+within a single watershed.
+
+Importantly, incorporating lag improves dependence metrics for only a
+subset of wells, suggesting diminishing returns relative to increased
+data requirements and model complexity. This finding supports the
+practical utility of zero-lag formulations for large-scale screening
+analyses, while acknowledging that lagged approaches may be valuable for
+site-specific investigations.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Emergence of Basin-Scale Signal Through Aggregation
+\end{enumerate}
+
+Although individual gage-level relationships remain weak, aggregation
+across terminal gages reveals a coherent basin-scale ΔWTE--ΔQ signal.
+Summing ΔQ and ΔWTE across watersheds suppresses local noise and
+emphasizes shared regional trends driven by long-term groundwater
+storage changes.
+
+This behavior is analogous to signal emergence in climate and hydrologic
+trend analysis, where aggregation across space or time reveals patterns
+that are not detectable at individual sites. In the GSLB, basin-scale
+aggregation integrates heterogeneous local responses into a system-level
+signal consistent with regional groundwater decline and reduced baseflow
+contributions.
+
+The emergence of a basin-scale response despite weak local
+predictability highlights the value of multi-scale analysis. While daily
+streamflow at individual gages may not be reliably predicted from
+groundwater levels alone, collective behavior across the basin provides
+diagnostic evidence of groundwater influence on surface water
+availability.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  Conclusions
+\end{enumerate}
+
+This section is not mandatory but can be added to the manuscript if the
+discussion is unusually long or complex.
+
+\textbf{Supplementary Materials:} The following supporting information
+can be downloaded at: https://www.mdpi.com/article/doi/s1, Figure S1:
+title; Table S1: title; Video S1: title.
+
+\textbf{Author Contributions:} For research articles with several
+authors, a short paragraph specifying their individual contributions
+must be provided. The following statements should be used
+``Conceptualization, X.X. and Y.Y.; methodology, X.X.; software, X.X.;
+validation, X.X., Y.Y. and Z.Z.; formal analysis, X.X.; investigation,
+X.X.; resources, X.X.; data curation, X.X.; writing---original draft
+preparation, X.X.; writing---review and editing, X.X.; visualization,
+X.X.; supervision, X.X.; project administration, X.X.; funding
+acquisition, Y.Y. All authors have read and agreed to the published
+version of the manuscript.'' Please turn to the
+\href{https://img.mdpi.org/data/contributor-role-instruction.pdf}{CRediT
+taxonomy} for the term explanation. Authorship must be limited to those
+who have contributed substantially to the work reported.
+
+\textbf{Funding:} Please add: ``This research received no external
+funding'' or ``This research was funded by NAME OF FUNDER, grant number
+XXX'' and ``The APC was funded by XXX''. Check carefully that the
+details given are accurate and use the standard spelling of funding
+agency names at https://search.crossref.org/funding. Any errors may
+affect your future funding.
+
+\textbf{Data Availability Statement:} We encourage all authors of
+articles published in MDPI journals to share their research data. In
+this section, please provide details regarding where data supporting
+reported results can be found, including links to publicly archived
+datasets analyzed or generated during the study. Where no new data were
+created, or where data is unavailable due to privacy or ethical
+restrictions, a statement is still required. Suggested Data Availability
+Statements are available in section ``MDPI Research Data Policies'' at
+https://www.mdpi.com/ethics.
+
+\textbf{Acknowledgments:} In this section, you can acknowledge any
+support given which is not covered by the author contribution or funding
+sections. This may include administrative and technical support, or
+donations in kind (e.g., materials used for experiments). Where GenAI
+has been used for purposes such as generating text, data, or graphics,
+or for study design, data collection, analysis, or interpretation of
+data, please add ``During the preparation of this manuscript/study, the
+author(s) used {[}tool name, version information{]} for the purposes of
+{[}description of use{]}. The authors have reviewed and edited the
+output and take full responsibility for the content of this
+publication.''
+
+\textbf{Conflicts of Interest:} Declare conflicts of interest or state
+``The authors declare no conflicts of interest.'' Authors must identify
+and declare any personal circumstances or interest that may be perceived
+as inappropriately influencing the representation or interpretation of
+reported research results. Any role of the funders in the design of the
+study; in the collection, analyses or interpretation of data; in the
+writing of the manuscript; or in the decision to publish the results
+must be declared in this section. If there is no role, please state
+``The funders had no role in the design of the study; in the collection,
+analyses, or interpretation of data; in the writing of the manuscript;
+or in the decision to publish the results''.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  Abbreviations
+\end{enumerate}
+
+The following abbreviations are used in this manuscript:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1191}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8809}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+MDPI
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Multidisciplinary Digital Publishing Institute
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DOAJ & Directory of open access journals \\
+TLA & Three letter acronym \\
+LD & Linear dichroism \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  References
+\end{enumerate}
+
+1. Carroll, R.W.H.; Niswonger, R.G.; Ulrich, C.; Varadharajan, C.;
+Siirila-Woodburn, E.R.; Williams, K.H. Declining Groundwater Storage
+Expected to Amplify Mountain Streamflow Reductions in a Warmer World.
+\emph{Nat Water} \textbf{2024}, \emph{2}, 419--433,
+doi:10.1038/s44221-024-00239-0.
+
+2. Mukherjee, A.; Bhanja, S.N.; Wada, Y. Groundwater Depletion Causing
+Reduction of Baseflow Triggering Ganges River Summer Drying.
+\emph{Scientific Reports} \textbf{2018}, \emph{8}, 12049,
+doi:10.1038/s41598-018-30246-7.
+
+3. Bosch, D.D.; Lowrance, R.R.; Sheridan, J.M.; Williams, R.G. Ground
+Water Storage Effect on Streamflow for a Southeastern Coastal Plain
+Watershed. \emph{Groundwater} \textbf{2003}, \emph{41}, 903--912,
+doi:10.1111/j.1745-6584.2003.tb02433.x.
+
+4. Abbas, S.A.; Bailey, R.T.; White, J.T.; Arnold, J.G.; White, M.J.
+Estimation of Groundwater Storage Loss Using Surface--Subsurface
+Hydrologic Modeling in an Irrigated Agricultural Region.
+\emph{Scientific Reports} \textbf{2025}, \emph{15}, 8350,
+doi:10.1038/s41598-025-92987-6.
+
+5. Konikow, L.F. Long-Term Groundwater Depletion in the United States.
+\emph{Groundwater} \textbf{2015}, \emph{53}, 2--9,
+doi:10.1111/gwat.12306.
+
+6. Hodgkins, G.A.; Dudley, R.W.; Nielsen, M.G.; Renard, B.; Qi, S.L.
+Groundwater-Level Trends in the U.S. Glacial Aquifer System, 1964--2013.
+\emph{Journal of Hydrology} \textbf{2017}, \emph{553}, 289--303,
+doi:10.1016/j.jhydrol.2017.07.055.
+
+7. Rojanasakul, M.; Flavelle, C.; Migliozzi, B.; Murray, E. America Is
+Draining Its Groundwater Like There's No Tomorrow. \emph{New York Times}
+2023.
+
+8. Rojanasakul, M.; Flavelle, C.; Migliozzi, B.; Murray, E. America Is
+Using Up Its Groundwater Like There's No Tomorrow. \emph{The New York
+Times} 2023.
+
+9. Bedford, D.; Douglass, A. Changing Properties of Snowpack in the
+Great Salt Lake Basin, Western United States, from a 26-Year SNO℡
+Record. \emph{The Professional Geographer} \textbf{2008}, \emph{60},
+374--386, doi:10.1080/00330120802013646.
+
+10. Yeager, K.N.; Steenburgh, W.J.; Alcott, T.I. Contributions of
+Lake-Effect Periods to the Cool-Season Hydroclimate of the Great Salt
+Lake Basin. \textbf{2013}, doi:10.1175/JAMC-D-12-077.1.
+
+11. USGS USGS Groundwater Data for the Nation Available online:
+https://nwis.waterdata.usgs.gov/nwis/gw (accessed on 10 December 2025).
+
+12. USGS Water Data for the Nation Available online:
+https://waterdata.usgs.gov/nwis (accessed on 28 December 2025).
+
+13. GEOGLOWS Available online: https://www.geoglows.org/ (accessed on 28
+December 2025).
+
+14. Aghababaei, A.; Jones, N.L.; Williams, G.P.; Webster-Esho, E.;
+Heijden, R. van der; Li, X.; Clement, T.P.; Rizzo, D.M.; Aghababaei, A.;
+Jones, N.L.; et al. Development and Comparison of Methods for
+Identification of Baseflow-Dominant Periods in Streamflow Records.
+\emph{Water} \textbf{2025}, \emph{17}, doi:10.3390/w17213083.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Author 1, A.B.; Author 2, C.D. Title of the article. \emph{Abbreviated
+  Journal Name} \textbf{Year}, \emph{Volume}, page range.
+\item
+  Author 1, A.; Author 2, B. Title of the chapter. In \emph{Book Title},
+  2nd ed.; Editor 1, A., Editor 2, B., Eds.; Publisher: Publisher
+  Location, Country, 2007; Volume 3, pp. 154--196.
+\item
+  Author 1, A.; Author 2, B. \emph{Book Title}, 3rd ed.; Publisher:
+  Publisher Location, Country, 2008; pp. 154--196.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Author 1, A.B.; Author 2, C. Title of Unpublished Work.
+  \emph{Abbreviated Journal Name} year, \emph{phrase indicating stage of
+  publication (submitted; accepted; in press)}.
+\item
+  Author 1, A.B. (University, City, State, Country); Author 2, C.
+  (Institute, City, State, Country). Personal communication, 2012.
+\item
+  Author 1, A.B.; Author 2, C.D.; Author 3, E.F. Title of Presentation.
+  In Proceedings of the Name of the Conference, Location of Conference,
+  Country, Date of Conference (Day Month Year).
+\item
+  Author 1, A.B. Title of Thesis. Level of Thesis, Degree-Granting
+  University, Location of University, Date of Completion.
+\item
+  Title of Site. Available online: URL (accessed on Day Month Year).
+\end{enumerate}
+
+\textbf{Disclaimer/Publisher's Note:} The statements, opinions and data
+contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI
+and/or the editor(s) disclaim responsibility for any injury to people or
+property resulting from any ideas, methods, instructions or products
+referred to in the content.
+
+\end{document}
